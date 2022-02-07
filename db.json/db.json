@@ -16,7 +16,7 @@
               "seat" :[
                 {
                   "row": "A",
-                  "colmn": [
+                  "column": [
                     {
                       "seatName": "1",
                       "reserved": "false"
@@ -45,7 +45,7 @@
             },
             {
               "row": "B",
-              "colmn": [
+              "column": [
                 {
                   "seatName": "1",
                   "reserved": "false"
@@ -74,7 +74,7 @@
             },
             {
               "row": "C",
-              "colmn": [
+              "column": [
                 {
                   "seatName": "1",
                   "reserved": "false"
@@ -103,7 +103,7 @@
             },
             {
               "row": "D",
-              "colmn": [
+              "column": [
                 {
                   "seatName": "1",
                   "reserved": "false"
@@ -132,7 +132,7 @@
             },
             {
               "row": "E",
-              "colmn": [
+              "column": [
                 {
                   "seatName": "1",
                   "reserved": "false"
@@ -161,7 +161,7 @@
             },
             {
               "row": "F",
-              "colmn": [
+              "column": [
                 {
                   "seatName": "1",
                   "reserved": "false"
@@ -211,7 +211,7 @@
               "seat" :[
                 {
                   "row": "A",
-                  "colmn": [
+                  "column": [
                     {
                       "seatName": "1",
                       "reserved": "false"
@@ -240,7 +240,7 @@
             },
             {
               "row": "B",
-              "colmn": [
+              "column": [
                 {
                   "seatName": "1",
                   "reserved": "false"
@@ -269,7 +269,7 @@
             },
             {
               "row": "C",
-              "colmn": [
+              "column": [
                 {
                   "seatName": "1",
                   "reserved": "false"
@@ -298,7 +298,7 @@
             },
             {
               "row": "D",
-              "colmn": [
+              "column": [
                 {
                   "seatName": "1",
                   "reserved": "false"
@@ -327,7 +327,7 @@
             },
             {
               "row": "E",
-              "colmn": [
+              "column": [
                 {
                   "seatName": "1",
                   "reserved": "false"
@@ -356,7 +356,7 @@
             },
             {
               "row": "F",
-              "colmn": [
+              "column": [
                 {
                   "seatName": "1",
                   "reserved": "false"
@@ -406,7 +406,7 @@
               "seat" :[
                 {
                   "row": "A",
-                  "colmn": [
+                  "column": [
                     {
                       "seatName": "1",
                       "reserved": "false"
@@ -435,7 +435,7 @@
             },
             {
               "row": "B",
-              "colmn": [
+              "column": [
                 {
                   "seatName": "1",
                   "reserved": "false"
@@ -464,7 +464,7 @@
             },
             {
               "row": "C",
-              "colmn": [
+              "column": [
                 {
                   "seatName": "1",
                   "reserved": "false"
@@ -493,7 +493,7 @@
             },
             {
               "row": "D",
-              "colmn": [
+              "column": [
                 {
                   "seatName": "1",
                   "reserved": "false"
@@ -522,7 +522,7 @@
             },
             {
               "row": "E",
-              "colmn": [
+              "column": [
                 {
                   "seatName": "1",
                   "reserved": "false"
@@ -551,7 +551,7 @@
             },
             {
               "row": "F",
-              "colmn": [
+              "column": [
                 {
                   "seatName": "1",
                   "reserved": "false"
