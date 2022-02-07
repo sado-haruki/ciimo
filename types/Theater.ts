@@ -1,13 +1,13 @@
 export type Theater = {
     id: string,
     name: string,
-    film: Film,
+    film: Film[],
 }
 
 export type Film = {
     id: string,
     name: string,
-    schedule: Schedule,
+    schedule: Schedule[],
 }
 
 export type Schedule = {
@@ -15,12 +15,12 @@ export type Schedule = {
     date: string,
     startTime: string,
     endTime: string,
-    seat: Seat,
+    seat: Seat[],
 }
 
 export type Seat = {
     row: string,
-    column: Column,
+    column: Column[],
 }
 
 export type Column = {
