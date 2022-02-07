@@ -1,0 +1,589 @@
+{
+    "theater": [
+    {
+      "id": 1,
+      "name": "横浜ブルク13",
+      "film": [
+        {
+          "id": 1,
+          "name": "呪術廻戦0",
+          "schedule": [
+            {
+              "id": 1,
+              "date": "2022/2/7",
+              "startTime": "10:00",
+              "endTime": "11:30",
+              "seat" :[
+                {
+                  "row": "A",
+                  "colmn": [
+                    {
+                      "seatName": "1",
+                      "reserved": "false"
+                    },
+                    {
+                      "seatName": "2",
+                      "reserved": "false"
+                    },
+                    {
+                      "seatName": "3",
+                      "reserved": "false"
+                    },
+                    {
+                      "seatName": "4",
+                      "reserved": "false"
+                    },
+                    {
+                      "seatName": "5",
+                      "reserved": "false"
+                    },
+                    {
+                      "seatName": "6",
+                      "reserved": "false"
+                    }
+              ]
+            },
+            {
+              "row": "B",
+              "colmn": [
+                {
+                  "seatName": "1",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "2",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "3",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "4",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "5",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "6",
+                  "reserved": "false"
+                }
+            ]
+            },
+            {
+              "row": "C",
+              "colmn": [
+                {
+                  "seatName": "1",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "2",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "3",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "4",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "5",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "6",
+                  "reserved": "false"
+                }
+            ]
+            },
+            {
+              "row": "D",
+              "colmn": [
+                {
+                  "seatName": "1",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "2",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "3",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "4",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "5",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "6",
+                  "reserved": "false"
+                }
+            ]
+            },
+            {
+              "row": "E",
+              "colmn": [
+                {
+                  "seatName": "1",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "2",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "3",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "4",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "5",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "6",
+                  "reserved": "false"
+                }
+            ]
+            },
+            {
+              "row": "F",
+              "colmn": [
+                {
+                  "seatName": "1",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "2",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "3",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "4",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "5",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "6",
+                  "reserved": "false"
+                }
+            ]
+            }
+            ]
+            }
+          ]      
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "イオンシネマ みなとみらい",
+      "film": [
+        {
+          "id": 2,
+          "name": "スパイダーマン",
+          "theaterId":[2],
+          "schedule": [
+            {
+              "id": 1,
+              "date": "2022/2/7",
+              "startTime": "10:00",
+              "endTime": "11:30",
+              "seat" :[
+                {
+                  "row": "A",
+                  "colmn": [
+                    {
+                      "seatName": "1",
+                      "reserved": "false"
+                    },
+                    {
+                      "seatName": "2",
+                      "reserved": "false"
+                    },
+                    {
+                      "seatName": "3",
+                      "reserved": "false"
+                    },
+                    {
+                      "seatName": "4",
+                      "reserved": "false"
+                    },
+                    {
+                      "seatName": "5",
+                      "reserved": "false"
+                    },
+                    {
+                      "seatName": "6",
+                      "reserved": "false"
+                    }
+              ]
+            },
+            {
+              "row": "B",
+              "colmn": [
+                {
+                  "seatName": "1",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "2",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "3",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "4",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "5",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "6",
+                  "reserved": "false"
+                }
+            ]
+            },
+            {
+              "row": "C",
+              "colmn": [
+                {
+                  "seatName": "1",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "2",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "3",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "4",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "5",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "6",
+                  "reserved": "false"
+                }
+            ]
+            },
+            {
+              "row": "D",
+              "colmn": [
+                {
+                  "seatName": "1",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "2",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "3",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "4",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "5",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "6",
+                  "reserved": "false"
+                }
+            ]
+            },
+            {
+              "row": "E",
+              "colmn": [
+                {
+                  "seatName": "1",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "2",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "3",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "4",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "5",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "6",
+                  "reserved": "false"
+                }
+            ]
+            },
+            {
+              "row": "F",
+              "colmn": [
+                {
+                  "seatName": "1",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "2",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "3",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "4",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "5",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "6",
+                  "reserved": "false"
+                }
+            ]
+            }
+            ]
+            }
+          ]      
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "T・ジョイ 横浜",
+      "film": [
+        {
+          "id": 3,
+          "name": "ゴーストバスターズ",
+          "theaterId":[3],
+          "schedule": [
+            {
+              "id": 1,
+              "date": "2022/2/7",
+              "startTime": "10:00",
+              "endTime": "11:30",
+              "seat" :[
+                {
+                  "row": "A",
+                  "colmn": [
+                    {
+                      "seatName": "1",
+                      "reserved": "false"
+                    },
+                    {
+                      "seatName": "2",
+                      "reserved": "false"
+                    },
+                    {
+                      "seatName": "3",
+                      "reserved": "false"
+                    },
+                    {
+                      "seatName": "4",
+                      "reserved": "false"
+                    },
+                    {
+                      "seatName": "5",
+                      "reserved": "false"
+                    },
+                    {
+                      "seatName": "6",
+                      "reserved": "false"
+                    }
+              ]
+            },
+            {
+              "row": "B",
+              "colmn": [
+                {
+                  "seatName": "1",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "2",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "3",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "4",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "5",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "6",
+                  "reserved": "false"
+                }
+            ]
+            },
+            {
+              "row": "C",
+              "colmn": [
+                {
+                  "seatName": "1",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "2",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "3",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "4",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "5",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "6",
+                  "reserved": "false"
+                }
+            ]
+            },
+            {
+              "row": "D",
+              "colmn": [
+                {
+                  "seatName": "1",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "2",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "3",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "4",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "5",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "6",
+                  "reserved": "false"
+                }
+            ]
+            },
+            {
+              "row": "E",
+              "colmn": [
+                {
+                  "seatName": "1",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "2",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "3",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "4",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "5",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "6",
+                  "reserved": "false"
+                }
+            ]
+            },
+            {
+              "row": "F",
+              "colmn": [
+                {
+                  "seatName": "1",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "2",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "3",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "4",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "5",
+                  "reserved": "false"
+                },
+                {
+                  "seatName": "6",
+                  "reserved": "false"
+                }
+            ]
+            }
+            ]
+            }
+          ]      
+        }
+      ]
+    }
+  ]
+  }
+  
