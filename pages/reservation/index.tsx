@@ -13,7 +13,7 @@ const Index = () => {
       console.log(data.current);
       setshow(true);
     });
-  }, [show]);
+  }, []);
 
   return (
     <>
