@@ -9,16 +9,11 @@ interface ScheduleProps {
 
 const Schedule = ({ theaters }: ScheduleProps) => {
 
-  const data = useRef<Theater[]>();
-  const [show, setshow] = useState(false);
-
-
   return (
     <>
-    <button onClick={()=>setshow(true)}>aaa</button>
-        {theaters.map(( theater ) =>{
-          <div key={theater.id} >{theater.name}</div>
-        })}
+        {theaters.map((theater) =>
+          <div key={theater.id}>{theater.name}</div>
+        )}
     </>
   );
 };
