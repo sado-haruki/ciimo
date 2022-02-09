@@ -3,17 +3,21 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import styles from "../../styles/complete.module.css";
 import { Reservation, ReservationSeat } from "../../types/Reservation";
+import axios from "axios"
+import {Theater} from "../../types/Theater";
 
 const ReservationConfirm: NextPage = () => {
   const router = useRouter();
 
-  const [storage, setStorage] =useState({} as Reservation)
-  const [seat, setSeat] =useState({} as ReservationSeat)
+  const [storage, setStorage] = useState({} as Reservation);
+  const [seat, setSeat] = useState({} as ReservationSeat);
 
   useEffect(() => {
-    setStorage(toJsonStorage(localStorage.getItem("reservation")) as Reservation);
+    setStorage(
+      toJsonStorage(localStorage.getItem("reservation")) as Reservation
+    );
     setSeat(toJsonStorage(localStorage.getItem("seat")) as ReservationSeat);
-  }, [])
+  }, []);
 
   const toJsonStorage = (storage: string | null): string => {
     if (storage !== null) {
@@ -24,13 +28,26 @@ const ReservationConfirm: NextPage = () => {
 
   const clickConfirm = () => {
 
-    const a : ReservationSeat = {
-        row: 'A',
-        seatName: '1'
-    }
+    axios.get(`http://localhost:5000/theater/${storage.theaterId}`).then(response =>
+    {
+      // const theaters:Theater[] = response.data
+      // seats.current = theaters.find((theater) => theater.id === Number(reservation.theaterId))?.film
+      // .find((f) => f.id === Number(reservation.filmId))?.schedule
+      // .find((s) => s.id === Number(reservation.scheduleId))?.seat || []
+      // console.log(seats);
+      // setReadFlg(true);
+    })
 
-    localStorage.setItem('paymentCode', 'AAA')
-    localStorage.setItem('seat', JSON.stringify(a));
+
+
+
+    const a: ReservationSeat = {
+      row: "A",
+      seatName: "1",
+    };
+
+    localStorage.setItem("paymentCode", "AAA");
+    localStorage.setItem("seat", JSON.stringify(a));
     router.push({
       pathname: "complete",
     });
@@ -39,7 +56,7 @@ const ReservationConfirm: NextPage = () => {
   return (
     <div className={styles.container}>
       <main className={styles.main}>
-      <div className={styles.items}>
+        <div className={styles.items}>
           <div>
             <div>
               <label>映画館</label>
@@ -55,7 +72,9 @@ const ReservationConfirm: NextPage = () => {
             </div>
             <div>
               <label>座席</label>
-              <span>{seat.row}-{seat.seatName}</span>
+              <span>
+                {seat.row}-{seat.seatName}
+              </span>
             </div>
             {/* <div>
               <label>券の種類</label>
