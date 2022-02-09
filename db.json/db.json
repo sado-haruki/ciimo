@@ -7,6 +7,7 @@
         {
           "id": 1,
           "name": "呪術廻戦0",
+          "theaterId":3,
           "schedule": [
             {
               "id": 1,
@@ -201,7 +202,7 @@
         {
           "id": 2,
           "name": "スパイダーマン",
-          "theaterId":[2],
+          "theaterId":2,
           "schedule": [
             {
               "id": 1,
@@ -396,7 +397,7 @@
         {
           "id": 3,
           "name": "ゴーストバスターズ",
-          "theaterId":[3],
+          "theaterId":3,
           "schedule": [
             {
               "id": 1,
