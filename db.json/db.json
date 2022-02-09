@@ -10,7 +10,7 @@
           "schedule": [
             {
               "id": 1,
-              "date": "2022/2/7",
+              "date": "2/7(月)",
               "startTime": "10:00",
               "endTime": "11:30",
               "seat" :[
@@ -205,7 +205,7 @@
           "schedule": [
             {
               "id": 1,
-              "date": "2022/2/7",
+              "date": "2/7(月)",
               "startTime": "10:00",
               "endTime": "11:30",
               "seat" :[
@@ -400,7 +400,7 @@
           "schedule": [
             {
               "id": 1,
-              "date": "2022/2/7",
+              "date": "2/7(月)",
               "startTime": "10:00",
               "endTime": "11:30",
               "seat" :[

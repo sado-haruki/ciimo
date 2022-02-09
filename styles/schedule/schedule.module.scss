@@ -1,0 +1,26 @@
+@import "../variables.scss";
+
+.theater {
+  margin-top: 1.5rem;
+  font-weight: bold;
+}
+
+.film {
+    margin-top: 1rem;
+    font-weight: normal;
+}
+
+.schedule {
+    color: $text-color;
+    padding: 0.75rem 1.875rem;
+    border-radius: 0.25rem;
+    border: solid 0.0625rem $main-gray;
+    display: block;
+    background-color: white;
+    margin-top: 0.5rem;
+    cursor: pointer;
+}
+
+.schedule+.schedule{
+    margin-left: 1rem;
+}
