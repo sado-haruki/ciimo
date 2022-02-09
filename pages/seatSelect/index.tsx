@@ -54,7 +54,7 @@ const SeatSelect: NextPage = () => {
       return;
     }
 
-    localStorage.setItem('reservationSeat', JSON.stringify(reservationSeat));
+    localStorage.setItem('reservationSeat', JSON.stringify(reservationSeat.current));
   }
 
   return (
