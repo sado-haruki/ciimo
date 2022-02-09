@@ -1,17 +1,17 @@
 export type Theater = {
-    id:number,
+    id: number,
     name: string,
     film: Film[],
 }
 
 export type Film = {
-    id:number,
+    id: number,
     name: string,
     schedule: Schedule[],
 }
 
 export type Schedule = {
-    id:number,
+    id: number,
     date: string,
     startTime: string,
     endTime: string,
