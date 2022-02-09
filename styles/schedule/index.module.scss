@@ -22,6 +22,7 @@
 }
 
 .dateTabs {
+  flex-wrap: wrap;
   display: flex;
   width: 100%;
   :active {
@@ -31,26 +32,26 @@
   }
 }
 
-.dateTab {
+.dateTab,
+.selected {
+  padding: 0.625rem 0;
   flex-grow: 1;
   justify-content: center;
   display: flex;
   margin-right: -0.0625rem;
-  color: $text-color;
   border-radius: 0.25rem;
-  border: solid 0.0625rem $main-gray;
-  background-color: white;
   cursor: pointer;
 }
 
+.dateTab {
+  color: $text-color;
+  border: solid 0.0625rem $main-gray;
+  background-color: white;
+}
+
 .selected {
-    flex-grow: 1;
-    justify-content: center;
-    display: flex;
-    margin-right: -0.0625rem;
-    color: white;
-    border-radius: 0.25rem;
-    border: solid 0.0625rem $red;
-    background-color: $red;
-    cursor: pointer;  
+  z-index: 1;
+  color: white;
+  border: solid 0.0625rem $red;
+  background-color: $red;
 }
