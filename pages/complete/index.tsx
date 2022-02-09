@@ -2,9 +2,22 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import styles from "../../styles/complete.module.css";
+import { Reservation } from "../../types/Reservation";
+
 
 const ReservationComplete: NextPage = () => {
-  const router = useRouter();
+
+  const toJsonStorage = (storage: string | null): string => {
+    if (storage !== null) {
+      return JSON.parse(storage);
+    }
+    return "";
+  };
+
+  const storage  = toJsonStorage(localStorage.getItem("reservation")) as Reservation;
+  const seatName = toJsonStorage(localStorage.getItem("seatName"));
+  
+
   return (
     <div className={styles.container}>
       <Head>
@@ -24,21 +37,21 @@ const ReservationComplete: NextPage = () => {
             </div>
             <div>
               <label>映画館</label>
-              <span>イオンシネマ みなとみらい</span>
+              <span>{storage.theaterName}</span>
             </div>
             <div>
               <label>作品</label>
-              <span>劇場版 呪術廻戦０</span>
+              <span>{storage.filmName}</span>
             </div>
             <div>
               <label>上映日時</label>
-              <span>2/7（月）16:05～18:00</span>
+              <span>{storage.schedule}</span>
             </div>
             <div>
               <label>座席</label>
-              <span>J-17</span>
+              <span>{seatName}</span>
             </div>
-            <div>
+            {/* <div>
               <label>券の種類</label>
               <span>大人(20歳以上) 1枚</span>
             </div>
@@ -49,20 +62,7 @@ const ReservationComplete: NextPage = () => {
             <div>
               <label>金額</label>
               <span>¥ 1,800</span>
-            </div>
-          </div>
-          <div>
-            <div className={styles.paymentCode}>{router.query.paymentCode}</div>
-            <div>{router.query.theaterName}</div>
-            <div>{router.query.filmName}</div>
-            <div>{router.query.schedule}</div>
-            <div>{router.query.seatName}</div>
-            <div>
-              {router.query.ticketType}
-              {router.query.count}
-            </div>
-            <div>{router.query.paymentMethod}</div>
-            <div>{router.query.money}</div>
+            </div> */}
           </div>
         </div>
       </main>
