@@ -25,5 +25,5 @@ export type Seat = {
 
 export type Column = {
     seatName: string,
-    reserved: string,
+    reserved: boolean,
 }
