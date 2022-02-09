@@ -13,7 +13,7 @@ const ReservationComplete: NextPage = () => {
     setStorage(
       toJsonStorage(localStorage.getItem("reservation")) as Reservation
     );
-    setSeat(toJsonStorage(localStorage.getItem("seat")) as ReservationSeat);
+    setSeat(toJsonStorage(localStorage.getItem("reservationSeat")) as ReservationSeat);
   }, []);
 
   const toJsonStorage = (storage: string | null): string => {
