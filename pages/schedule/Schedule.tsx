@@ -45,7 +45,7 @@ const Schedule = ({ theaters }: ScheduleProps) => {
   };
 
   localStorage.setItem("reservation",JSON.stringify(reservation))
-  router.push(`../seatselect`)
+  router.push(`../seatSelect`)
  }
 
   return (
