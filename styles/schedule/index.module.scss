@@ -2,7 +2,7 @@
 
 .main {
   color: $text-color;
-  padding: 5rem 8.25rem 3rem;
+  padding: 1.5rem 8.25rem 3rem;
 }
 
 .back {
@@ -19,6 +19,7 @@
 .contants {
   padding: 1.5rem 5.375rem 2.25rem;
   background-color: $bg-color;
+  min-height: 38rem;
 }
 
 .dateTabs {
