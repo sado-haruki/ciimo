@@ -29,12 +29,6 @@ const Schedule = ({ theaters }: ScheduleProps) => {
     });
   });
 
-  // startTimeとendTimeを組み合わせてidとscheduleで渡す
-
-  // 日付タブを押すと日付要素で絞り込んで表示させる
-  // 
-
-
   const clickSchedule = (theater: Theater, film: Film, schedule: ScheduleType) => {
     const reservation: Reservation = {
       theaterId: theater.id,
