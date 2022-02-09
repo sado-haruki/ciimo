@@ -11,3 +11,8 @@ export type Reservation = {
     money?: string,
     paymentMethod?: string, 
 }
+
+export type ReservationSeat = {
+    row?: string,
+    seatName?: string,
+}
