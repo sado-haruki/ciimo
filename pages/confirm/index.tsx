@@ -23,34 +23,41 @@ const ReservationConfirm: NextPage = () => {
     if (storage !== null) {
       return JSON.parse(storage);
     }
-    return "";
+    return "";  
   };
 
   const clickConfirm = () => {
 
     axios.get(`http://localhost:5000/theater/${storage.theaterId}`).then(response =>
     {
-      // const theaters:Theater[] = response.data
-      // seats.current = theaters.find((theater) => theater.id === Number(reservation.theaterId))?.film
-      // .find((f) => f.id === Number(reservation.filmId))?.schedule
-      // .find((s) => s.id === Number(reservation.scheduleId))?.seat || []
-      // console.log(seats);
-      // setReadFlg(true);
+      const theater:Theater = response.data;
+
+      const reserved = theater.film.find((f) => f.id === storage.filmId)?.schedule.find((s) => s.id === storage.scheduleId)?.seat.find((s) => s.row === seat.row)?.column.find((c) => c.seatName === seat.seatName)?.reserved;
+
+
+      if(reserved){
+
+      }
+
+      // console.log(storage);
+      // console.log(seat);
+      // console.log(reserved);
+
     })
 
 
 
 
-    const a: ReservationSeat = {
-      row: "A",
-      seatName: "1",
-    };
+    // const a: ReservationSeat = {
+    //   row: "A",
+    //   seatName: "1",
+    // };
 
-    localStorage.setItem("paymentCode", "AAA");
-    localStorage.setItem("seat", JSON.stringify(a));
-    router.push({
-      pathname: "complete",
-    });
+    // localStorage.setItem("paymentCode", "AAA");
+    // localStorage.setItem("seat", JSON.stringify(a));
+    // router.push({
+    //   pathname: "complete",
+    // });
   };
 
   return (
@@ -91,7 +98,7 @@ const ReservationConfirm: NextPage = () => {
           </div>
         </div>
         <div>
-          <button onClick={() => router.push("SeatSelect")}>戻る</button>
+          <button onClick={() => router.push("seatSelect")}>戻る</button>
           <button onClick={clickConfirm}>予約を確定する</button>
         </div>
       </main>
