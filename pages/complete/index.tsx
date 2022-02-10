@@ -33,31 +33,31 @@ const ReservationComplete: NextPage = () => {
 
   return (
     <>
-    <Header />
+    <Header/>
     <div className={styles.container}>
       <main className={styles.main}>
         <h1 className={styles.title}>予約が完了しました。</h1>
         <div className={styles.items}>
           <div>
             <div>
-              <label>支払番号</label>
+              <label className={styles.label}>支払番号</label>
               <span className={styles.paymentCode}>{router.query.paymentCode}</span>
             </div>
             <div>
-              <label>映画館</label>
-              <span>{storage.theaterName}</span>
+              <label className={styles.label}>映画館</label>
+              <span className={styles.item}>{storage.theaterName}</span>
             </div>
             <div>
-              <label>作品</label>
-              <span>{storage.filmName}</span>
+              <label className={styles.label}>作品</label>
+              <span className={styles.item}>{storage.filmName}</span>
             </div>
             <div>
-              <label>上映日時</label>
-              <span>{storage.schedule}</span>
+              <label className={styles.label}>上映日時</label>
+              <span className={styles.item}>{storage.schedule}</span>
             </div>
             <div>
-              <label>座席</label>
-              <span>
+              <label className={styles.label}>座席</label>
+              <span className={styles.item}>
                 {seat.row}-{seat.seatName}
               </span>
             </div>
@@ -75,7 +75,7 @@ const ReservationComplete: NextPage = () => {
             </div> */}
           </div>
         </div>
-        <button onClick={clickTop}>TOPページに戻る</button>
+        <button onClick={clickTop} className={styles.backTop}>TOPページに戻る</button>
       </main>
     </div>
     </>
