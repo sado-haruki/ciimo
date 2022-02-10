@@ -1,0 +1,15 @@
+@import "../variables.scss";
+
+.notClickablebutton{
+    margin: 0.125rem 0.5rem;
+    pointer-events: none;
+    background-color: $main-gray;
+}
+
+.clickablebutton{
+    margin: 0.125rem 0.5rem;
+}
+
+.selected {
+    border: solid 3px #6091d3;
+}
