@@ -8,7 +8,7 @@ const Index: NextPage = () => {
 
   useEffect(() => {
     router.push({
-      pathname: "schedule",
+      pathname: "../schedule",
     });
   }, []);
 

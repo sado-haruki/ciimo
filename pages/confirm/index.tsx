@@ -59,7 +59,7 @@ const ReservationConfirm: NextPage = () => {
         });
 
         router.push({
-          pathname: "complete",
+          pathname: "../complete",
           query: {
             paymentCode: `ABC${storage.theaterId}${storage.filmId}${storage.scheduleId}${seat.row}${seat.seatName}`,
           },
@@ -108,7 +108,7 @@ const ReservationConfirm: NextPage = () => {
           </div>
           <div className={styles.buttons}>
             <button
-              onClick={() => router.push("seatSelect")}
+              onClick={() => router.push("../seatSelect")}
               className={styles.back}
             >
               戻る
