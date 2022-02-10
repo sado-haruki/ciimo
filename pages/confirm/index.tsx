@@ -77,20 +77,20 @@ const ReservationConfirm: NextPage = () => {
           <div className={styles.items}>
             <div>
               <div>
-                <label>映画館</label>
-                <span>{storage.theaterName}</span>
+                <label className={styles.label}>映画館</label>
+                <span className={styles.item}>{storage.theaterName}</span>
               </div>
               <div>
-                <label>作品</label>
-                <span>{storage.filmName}</span>
+                <label className={styles.label}>作品</label>
+                <span className={styles.item}>{storage.filmName}</span>
               </div>
               <div>
-                <label>上映日時</label>
-                <span>{storage.schedule}</span>
+                <label className={styles.label}>上映日時</label>
+                <span className={styles.item}>{storage.schedule}</span>
               </div>
               <div>
-                <label>座席</label>
-                <span>
+                <label className={styles.label}>座席</label>
+                <span className={styles.item}>
                   {seat.row}-{seat.seatName}
                 </span>
               </div>
@@ -108,9 +108,9 @@ const ReservationConfirm: NextPage = () => {
             </div> */}
             </div>
           </div>
-          <div>
-            <button onClick={() => router.push("seatSelect")}>戻る</button>
-            <button onClick={clickConfirm}>予約を確定する</button>
+          <div className={styles.buttons}>
+            <button onClick={() => router.push("seatSelect")} className={styles.back}>戻る</button>
+            <button onClick={clickConfirm}　className={styles.complete}>予約を確定する</button>
           </div>
         </main>
       </div>

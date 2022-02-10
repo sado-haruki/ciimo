@@ -115,7 +115,7 @@
                     },
                     {
                       "seatName": "3",
-                      "reserved": false
+                      "reserved": true
                     },
                     {
                       "seatName": "4",
@@ -156,7 +156,7 @@
                     },
                     {
                       "seatName": "6",
-                      "reserved": false
+                      "reserved": true
                     }
                   ]
                 },
