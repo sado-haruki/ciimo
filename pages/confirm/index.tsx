@@ -1,10 +1,11 @@
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import styles from "../../styles/complete.module.css";
+import styles from "../../styles/confirm.module.scss";
 import { Reservation, ReservationSeat } from "../../types/Reservation";
-import axios from "axios"
-import {Theater} from "../../types/Theater";
+import axios from "axios";
+import { Theater } from "../../types/Theater";
+import Header from "../components/Header";
 
 const ReservationConfirm: NextPage = () => {
   const router = useRouter();
@@ -16,74 +17,84 @@ const ReservationConfirm: NextPage = () => {
     setStorage(
       toJsonStorage(localStorage.getItem("reservation")) as Reservation
     );
-    setSeat(toJsonStorage(localStorage.getItem("reservationSeat")) as ReservationSeat);
+    setSeat(
+      toJsonStorage(localStorage.getItem("reservationSeat")) as ReservationSeat
+    );
   }, []);
 
   const toJsonStorage = (storage: string | null): string => {
     if (storage !== null) {
       return JSON.parse(storage);
     }
-    return "";  
+    return "";
   };
 
   const clickConfirm = () => {
+    axios
+      .get(`http://localhost:5000/theater/${storage.theaterId}`)
+      .then((response) => {
+        const theater: Theater = response.data;
 
-    axios.get(`http://localhost:5000/theater/${storage.theaterId}`).then(response =>
-    {
-      const theater:Theater = response.data;
+        const reserved = theater.film
+          .find((f) => f.id === storage.filmId)
+          ?.schedule.find((s) => s.id === storage.scheduleId)
+          ?.seat.find((s) => s.row === seat.row)
+          ?.column.find((c) => c.seatName === seat.seatName)?.reserved;
 
-      const reserved = theater.film.find((f) => f.id === storage.filmId)?.schedule.find((s) => s.id === storage.scheduleId)?.seat.find((s) => s.row === seat.row)?.column.find((c) => c.seatName === seat.seatName)?.reserved;
+        if (reserved) {
 
+          //TODO 座席選択可能モーダルを表示
+          return;
+        }
 
-      if(reserved){
+        theater.film.find
+        ((f) => f.id === storage.filmId)!.schedule.find
+        ((s) => s.id === storage.scheduleId)!.seat.find
+        ((s) => s.row === seat.row)!.column.find
+        ((c) => c.seatName === seat.seatName)!.reserved = true;
 
-      }
+        axios
+          .put(`http://localhost:5000/theater/${storage.theaterId}`, {
+            id : theater.id,
+            name : theater.name,
+            film : theater.film
+          })
 
-      // console.log(storage);
-      // console.log(seat);
-      // console.log(reserved);
-
-    })
-
-
-
-
-    // const a: ReservationSeat = {
-    //   row: "A",
-    //   seatName: "1",
-    // };
-
-    // localStorage.setItem("paymentCode", "AAA");
-    // localStorage.setItem("seat", JSON.stringify(a));
-    // router.push({
-    //   pathname: "complete",
-    // });
+        router.push({
+          pathname: "complete",
+          query: {
+            paymentCode: `ABC${storage.theaterId}${storage.filmId}${storage.scheduleId}${seat.row}${seat.seatName}`,
+          },
+        });
+      });
   };
 
   return (
-    <div className={styles.container}>
-      <main className={styles.main}>
-        <div className={styles.items}>
-          <div>
+    <>
+      <Header />
+      <div className={styles.container}>
+        <main className={styles.main}>
+          <div className={styles.items}>
             <div>
-              <label>映画館</label>
-              <span>{storage.theaterName}</span>
-            </div>
-            <div>
-              <label>作品</label>
-              <span>{storage.filmName}</span>
-            </div>
-            <div>
-              <label>上映日時</label>
-              <span>{storage.schedule}</span>
-            </div>
-            <div>
-              <label>座席</label>
-              <span>
-                {seat.row}-{seat.seatName}
-              </span>
-            </div>
-            {/* <div>
+              <div>
+                <label>映画館</label>
+                <span>{storage.theaterName}</span>
+              </div>
+              <div>
+                <label>作品</label>
+                <span>{storage.filmName}</span>
+              </div>
+              <div>
+                <label>上映日時</label>
+                <span>{storage.schedule}</span>
+              </div>
+              <div>
+                <label>座席</label>
+                <span>
+                  {seat.row}-{seat.seatName}
+                </span>
+              </div>
+              {/* <div>
               <label>券の種類</label>
               <span>大人(20歳以上) 1枚</span>
             </div>
@@ -95,14 +106,15 @@ const ReservationConfirm: NextPage = () => {
               <label>金額</label>
               <span>¥ 1,800</span>
             </div> */}
+            </div>
           </div>
-        </div>
-        <div>
-          <button onClick={() => router.push("seatSelect")}>戻る</button>
-          <button onClick={clickConfirm}>予約を確定する</button>
-        </div>
-      </main>
-    </div>
+          <div>
+            <button onClick={() => router.push("seatSelect")}>戻る</button>
+            <button onClick={clickConfirm}>予約を確定する</button>
+          </div>
+        </main>
+      </div>
+    </>
   );
 };
 
