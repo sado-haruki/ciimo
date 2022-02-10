@@ -1,15 +1,31 @@
 @import "../variables.scss";
 
-.notClickablebutton{
-    margin: 0.125rem 0.5rem;
-    pointer-events: none;
-    background-color: $main-gray;
+.abled,
+.disabled,
+.selected {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: 0.25rem 0.125rem;
+  border-radius: 0;
 }
 
-.clickablebutton{
-    margin: 0.125rem 0.5rem;
+.disabled {
+  pointer-events: none;
+  background-color: $main-gray;
+  border: solid 0.0625rem transparent;
+}
+
+.abled {
+  background-color: white;
+  border: solid 0.0625rem $main-gray;
+  cursor: pointer;
 }
 
 .selected {
-    border: solid 3px #6091d3;
+  background-color: $red;
+  border: solid 0.0625rem $red;
+}
+
+.number {
+  color: transparent;
 }

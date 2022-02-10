@@ -86,52 +86,53 @@ const SeatSelect: NextPage = () => {
       <Header />
       <div className={styles.main}>
         <div className={styles.contants}>
-          {
-            // シート情報が取得できた場合
-            (readFlg) ? (
-              <>
-                <div className={styles.screen}>SCREEN</div>
-                {seats.current.map((seat, i) => (
-                  <div className={styles.seats} key={i}>
-                    <span className={styles.row}>{seat.row}</span>
-                    {
-                      seat.column.map((columTemp, j) => (
-                      <SeatButton
-                        key={j}
-                        selectedSeat={reservationSeat.current || {}}
-                        reserved={columTemp.reserved}
-                        clickSeat={clickSeat}
-                        seat={{ row: seat.row, seatName: columTemp.seatName }}
-                      />
-                      ))
-                    }
-                    <div key={i}></div>
-                  </div>
-                ))}
-              </>
-            ) :
-            // シート情報が取得できていない場合
-            (
-              <>読み込み中</>
-            )
-          }
-          <span className={styles.returnAndConfirm}>
+          <div className={styles.selectField}>
+            {
+              // シート情報が取得できた場合
+              readFlg ? (
+                <>
+                  <div className={styles.screen}>SCREEN</div>
+                  {seats.current.map((seat, i) => (
+                    <div className={styles.seats} key={i}>
+                      <span className={styles.row}>{seat.row}</span>
+                      {seat.column.map((columTemp, j) => (
+                        <SeatButton
+                          key={j}
+                          selectedSeat={reservationSeat.current || {}}
+                          reserved={columTemp.reserved}
+                          clickSeat={clickSeat}
+                          seat={{ row: seat.row, seatName: columTemp.seatName }}
+                        />
+                      ))}
+                      <div key={i} className={styles.row}>
+                        {seat.row}
+                      </div>
+                    </div>
+                  ))}
+                </>
+              ) : (
+                // シート情報が取得できていない場合
+                <>読み込み中</>
+              )
+            }
+          </div>
+          <div className={styles.buttons}>
             <Link href={"/schedule"}>
               <a>
-                <button className={styles.returnButton}>検索結果に戻る</button>
+                <button className={styles.back}>検索結果に戻る</button>
               </a>
             </Link>
 
             <Link href={"/confirm"}>
               <a onClick={clickConfirm}>
-                <button className={styles.confirmButton}>決定する</button>
+                <button className={styles.confirm}>決定する</button>
               </a>
             </Link>
-          </span>
+          </div>
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
 export default SeatSelect;
