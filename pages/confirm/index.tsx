@@ -42,23 +42,21 @@ const ReservationConfirm: NextPage = () => {
           ?.column.find((c) => c.seatName === seat.seatName)?.reserved;
 
         if (reserved) {
-
           //TODO 座席選択可能モーダルを表示
           return;
         }
 
-        theater.film.find
-        ((f) => f.id === storage.filmId)!.schedule.find
-        ((s) => s.id === storage.scheduleId)!.seat.find
-        ((s) => s.row === seat.row)!.column.find
-        ((c) => c.seatName === seat.seatName)!.reserved = true;
+        theater.film
+          .find((f) => f.id === storage.filmId)!
+          .schedule.find((s) => s.id === storage.scheduleId)!
+          .seat.find((s) => s.row === seat.row)!
+          .column.find((c) => c.seatName === seat.seatName)!.reserved = true;
 
-        axios
-          .put(`http://localhost:5000/theater/${storage.theaterId}`, {
-            id : theater.id,
-            name : theater.name,
-            film : theater.film
-          })
+        axios.put(`http://localhost:5000/theater/${storage.theaterId}`, {
+          id: theater.id,
+          name: theater.name,
+          film: theater.film,
+        });
 
         router.push({
           pathname: "complete",
@@ -109,8 +107,15 @@ const ReservationConfirm: NextPage = () => {
             </div>
           </div>
           <div className={styles.buttons}>
-            <button onClick={() => router.push("seatSelect")} className={styles.back}>戻る</button>
-            <button onClick={clickConfirm}　className={styles.complete}>予約を確定する</button>
+            <button
+              onClick={() => router.push("seatSelect")}
+              className={styles.back}
+            >
+              戻る
+            </button>
+            <button onClick={clickConfirm} className={styles.complete}>
+              予約を確定する
+            </button>
           </div>
         </main>
       </div>

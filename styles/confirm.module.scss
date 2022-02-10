@@ -1,5 +1,4 @@
 @import "variables.scss";
-@import "variables.scss";
 
 .container {
   color: $text-color;
@@ -13,38 +12,34 @@
   background-color: $bg-color;
   padding: 1.5rem 5.375rem;
   min-height: 38rem;
-
 }
 
 .items {
   margin-top: 2rem;
   display: flex;
-
 }
 
-.label{
+.label {
   display: inline-block;
   min-width: 15.125rem;
   margin-right: 1rem;
 }
 
-.item,.paymentCode {
+.item {
   display: inline-block;
   min-width: 15.125rem;
   margin-bottom: 1.5rem;
 }
-.paymentCode {
-  color: red;
-}
 
-.buttons{
-  width: 100%;
+.buttons {
+  min-width: 31.25rem;
   display: flex;
-margin-top: auto;
-justify-content: space-between;
+  margin-top: auto;
+  margin-bottom: 2.5rem;
+  justify-content: space-between;
 }
 
-.back{
+.back {
   color: $text-color;
   padding: 0.5rem 1rem;
   border-radius: 0.25rem;
@@ -53,7 +48,7 @@ justify-content: space-between;
   cursor: pointer;
 }
 
-.complete{
+.complete {
   color: white;
   padding: 0.5rem 1rem;
   border-radius: 0.25rem;
