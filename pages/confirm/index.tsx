@@ -10,7 +10,6 @@ import Header from "../components/Header";
 const ReservationConfirm: NextPage = () => {
   const router = useRouter();
 
-
   const [storage, setStorage] = useState({} as Reservation);
   const [seat, setSeat] = useState({} as ReservationSeat);
 
@@ -43,11 +42,23 @@ const ReservationConfirm: NextPage = () => {
           ?.column.find((c) => c.seatName === seat.seatName)?.reserved;
 
         if (reserved) {
+
+          //TODO 座席選択可能モーダルを表示
+          return;
         }
 
-        axios.put('http://localhost:5000/theater/2', {"value" : reserved}).then(()=> {
+        theater.film.find
+        ((f) => f.id === storage.filmId)!.schedule.find
+        ((s) => s.id === storage.scheduleId)!.seat.find
+        ((s) => s.row === seat.row)!.column.find
+        ((c) => c.seatName === seat.seatName)!.reserved = true;
 
-        })
+        axios
+          .put(`http://localhost:5000/theater/${storage.theaterId}`, {
+            id : theater.id,
+            name : theater.name,
+            film : theater.film
+          })
 
         router.push({
           pathname: "complete",
