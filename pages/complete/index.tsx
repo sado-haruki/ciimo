@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import styles from "../../styles/complete.module.css";
 import { Reservation, ReservationSeat } from "../../types/Reservation";
+import Header from "../components/Header";
 
 const ReservationComplete: NextPage = () => {
   const router = useRouter();
@@ -31,15 +32,16 @@ const ReservationComplete: NextPage = () => {
   };
 
   return (
+    <>
+    <Header />
     <div className={styles.container}>
       <main className={styles.main}>
         <h1 className={styles.title}>予約が完了しました。</h1>
-
         <div className={styles.items}>
           <div>
             <div>
               <label>支払番号</label>
-              <span className={styles.paymentCode}>ECM271605</span>
+              <span className={styles.paymentCode}>{router.query.paymentCode}</span>
             </div>
             <div>
               <label>映画館</label>
@@ -76,6 +78,7 @@ const ReservationComplete: NextPage = () => {
         <button onClick={clickTop}>TOPページに戻る</button>
       </main>
     </div>
+    </>
   );
 };
 
