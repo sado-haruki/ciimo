@@ -4,7 +4,7 @@ import axios from 'axios'
 import { Theater, Seat, Column } from '../../types/Theater'
 import { Reservation, ReservationSeat } from '../../types/Reservation';
 import Link from 'next/link';
-import Header from '../components/Header';
+import Header from '../../components/Header';
 import styles from '../../styles/seatSelect/index.module.scss'
 import SeatButton from '../components/seatButton';
 
