@@ -9,13 +9,4 @@ const Index: NextPage = () => {
   );
 };
 
-// トップページにアクセスされたときに書籍ページにリダイレクトする
-// Index.getInitialProps = async ({ res }) => {
-//   if (typeof window === 'undefined') {
-//     res?.writeHead(302, { Location: '/schedule' });
-//     res?.end();
-
-//     return {};
-//   }
-// };
 export default Index;
