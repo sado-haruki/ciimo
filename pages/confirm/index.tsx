@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import styles from "../../styles/complete.module.css";
+import styles from "../../styles/confirm.module.scss";
 import { Reservation, ReservationSeat } from "../../types/Reservation";
 import axios from "axios";
 import { Theater } from "../../types/Theater";

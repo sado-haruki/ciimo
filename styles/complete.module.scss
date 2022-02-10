@@ -1,20 +1,50 @@
+@import "variables.scss";
+
 .container {
-    padding: 0 2rem;
-  }
-  
-  .main {
-    min-height: 100vh;
-    padding: 4rem 0;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  .items{
-    display:flex;
+  color: $text-color;
+  padding: 1.5rem 8.25rem 3rem;
 }
 
-.paymentCode{
-    color: red;
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: $bg-color;
+  padding: 1.5rem 5.375rem;
+  min-height: 38rem;
+
+}
+
+.title{
+  margin: 0 0 1.5rem;
+}
+
+.items {
+  display: flex;
+
+}
+
+.label{
+  display: inline-block;
+  min-width: 15.125rem;
+  margin-right: 1rem;
+}
+
+.item,.paymentCode {
+  display: inline-block;
+  min-width: 15.125rem;
+  margin-bottom: 1.5rem;
+}
+.paymentCode {
+  color: red;
+}
+
+.backTop{
+  margin-top: auto;
+  color: $text-color;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  border: solid 0.0625rem $main-gray;
+  background-color: white;
+  cursor: pointer;
 }
