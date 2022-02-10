@@ -1,0 +1,58 @@
+@import '../variables.scss';
+
+.main {
+    color: $text-color;
+    text-align: justify;
+    // text-justify: inter-ideograph;
+    padding: 5rem 8.25rem 3rem;
+}
+
+.back{
+    font-size: $main;
+    color: $main-gray;
+}
+
+.title {
+    font-size: $title;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.screen{
+    display: flex;
+    width: 100%;
+    height: 1.8rem;
+    background-color: $main-gray;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.contants {
+    display: block;
+    padding: 1.5rem 5.375rem 2.25rem;
+    background-color: $bg-color;
+}
+
+.row {
+    display: flex;
+    width: 1rem;
+    right: 1rem;
+}
+
+.seats {
+    display: flex;
+    justify-content: center;
+}
+
+.returnAndConfirm {
+    display: flex;
+    margin-top: 1rem;
+}
+
+.returnButton {
+    justify-content: flex-start;
+}
+
+.confirmButton{
+    justify-content: flex-end;
+}

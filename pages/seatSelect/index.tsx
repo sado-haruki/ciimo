@@ -1,13 +1,14 @@
 import type { NextPage } from 'next'
 import React, { useState, useEffect, useRef, MouseEventHandler } from 'react'
 import axios from 'axios'
-import { useRouter } from "next/router";
-import {Theater, Seat, Column} from '../../types/Theater'
+import { Theater, Seat, Column } from '../../types/Theater'
 import { Reservation, ReservationSeat } from '../../types/Reservation';
 import Link from 'next/link';
-// import style from '../../styles/SeatSelect.sass'
+import Header from '../components/Header';
+import styles from '../../styles/seatSelect/index.module.scss'
+import SeatButton from '../components/seatButton';
 
-const toJson = (data:string | null) => {
+const toJson = (data: string | null) => {
   return data ? JSON.parse(data) : null;
 }
 
@@ -18,38 +19,37 @@ const SeatSelect: NextPage = () => {
 
   useEffect(() => {
     theaterGetJson();
-  },[])
+  }, [])
 
   const theaterGetJson = () => {
     const reservation = toJson(localStorage.getItem('reservation')) as Reservation
-    axios.get("http://localhost:5000/theater/").then(response => 
-    {
-      const theaters:Theater[] = response.data
+    axios.get("http://localhost:5000/theater/").then(response => {
+      const theaters: Theater[] = response.data
       seats.current = theaters.find((theater) => theater.id === reservation.theaterId)?.film
-      .find((f) => f.id === reservation.filmId)?.schedule
-      .find((s) => s.id === reservation.scheduleId)?.seat || []
+        .find((f) => f.id === reservation.filmId)?.schedule
+        .find((s) => s.id === reservation.scheduleId)?.seat || []
       console.log(seats);
       setReadFlg(true);
     })
   }
 
-  const clickSeat = (row:string, column:string) => {
-    const reservationSeatTemp:ReservationSeat = {
-      row: row,
-      seatName: column,
+  const clickSeat = (seat: ReservationSeat) => {
+    const reservationSeatTemp: ReservationSeat = {
+      row: seat.row,
+      seatName: seat.seatName,
     }
 
     reservationSeat.current = reservationSeatTemp;
   }
-  
-  const clickConfirm = (e:any) => {
+
+  const clickConfirm = (e: any) => {
     e.stopPropagation();
     theaterGetJson();
 
     const reservedTemp = seats.current.find((seat) => (seat.row === reservationSeat.current?.row))?.column
-    .find((columnTemp) => columnTemp.seatName === reservationSeat.current?.seatName)?.reserved
+      .find((columnTemp) => columnTemp.seatName === reservationSeat.current?.seatName)?.reserved
 
-    if(reservedTemp){
+    if (reservedTemp) {
       e.preventDefault();
       return;
     }
@@ -58,46 +58,55 @@ const SeatSelect: NextPage = () => {
   }
 
   return (
-  <>
-    {
-      // シート情報が取得できた場合
-      (readFlg) ? (
-        seats.current.map((seat, i) => (
-            <>
-            {seat.row}
-            {
-              seat.column.map((columTemp, j) => (
-                <button 
-                  key={j} 
-                  onClick={() => clickSeat(seat.row, columTemp.seatName)} 
-                  // className={ columTemp.reserved ? style.notclickablebutton : style.clickablebutton}
-                >
-                  {columTemp.seatName}
-                </button>
-              ))
-            }
-            <div key={i}></div>
-            </>
-        ))
-      ) : 
-      // シート情報が取得できていない場合
-      (
-        <>読み込み中</>
-      )
-    }
+    <>
+      <Header />
+      <div className={styles.main}>
+        <div className={styles.contants}>
+          {
+            // シート情報が取得できた場合
+            (readFlg) ? (
+              <>
+                <div className={styles.screen}>SCREEN</div>
+                {seats.current.map((seat, i) => (
+                  <div className={styles.seats} key={i}>
+                    <span className={styles.row}>{seat.row}</span>
+                    {
+                      seat.column.map((columTemp, j) => (
+                        <SeatButton
+                          key={j}
+                          selectedSeat={reservationSeat.current || {}}
+                          reserved={columTemp.reserved}
+                          clickSeat={clickSeat}
+                          seat={{ row: seat.row, seatName: columTemp.seatName }}
+                        />
+                      ))
+                    }
+                    <div key={i}></div>
+                  </div>
+                ))}
+              </>
+            ) :
+              // シート情報が取得できていない場合
+              (
+                <>読み込み中</>
+              )
+          }
+          <span className={styles.returnAndConfirm}>
+            <Link href={"/schedule"}>
+              <a>
+                <button className={styles.returnButton}>検索結果に戻る</button>
+              </a>
+            </Link>
 
-    <Link href={"/schedule"}>
-      <a>
-        <button>検索結果に戻る</button>
-      </a>
-    </Link>
-
-    <Link href={"/confirm"}>
-      <a onClick={clickConfirm}>
-        <button>決定する</button>
-      </a>
-    </Link>
-  </>
+            <Link href={"/confirm"}>
+              <a onClick={clickConfirm}>
+                <button className={styles.confirmButton}>決定する</button>
+              </a>
+            </Link>
+          </span>
+        </div>
+      </div>
+    </>
   )
 }
 
