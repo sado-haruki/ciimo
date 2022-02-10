@@ -5,7 +5,7 @@ import styles from "../../styles/confirm.module.scss";
 import { Reservation, ReservationSeat } from "../../types/Reservation";
 import axios from "axios";
 import { Theater } from "../../types/Theater";
-import Header from "../components/Header";
+import Header from "../../components/Header";
 
 const ReservationConfirm: NextPage = () => {
   const router = useRouter();

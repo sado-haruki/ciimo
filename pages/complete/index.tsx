@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import styles from "../../styles/complete.module.scss";
 import { Reservation, ReservationSeat } from "../../types/Reservation";
-import Header from "../components/Header";
+import Header from "../../components/Header";
 
 const ReservationComplete: NextPage = () => {
   const router = useRouter();

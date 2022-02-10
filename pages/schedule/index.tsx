@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Film, ScheduleType, Theater } from "../../types/Theater";
-import Header from "../components/Header";
+import Header from "../../components/Header";
 import styles from "../../styles/schedule/index.module.scss";
 import Schedule from "../../components/Schedule";
 
