@@ -29,41 +29,76 @@ const ReservationConfirm: NextPage = () => {
     return "";
   };
 
+  const isReserved = (theater: Theater): boolean | undefined => {
+    return theater.film
+      .find((f) => f.id === storage.filmId)
+      ?.schedule.find((s) => s.id === storage.scheduleId)
+      ?.seat.find((s) => s.row === seat.row)
+      ?.column.find((c) => c.seatName === seat.seatName)?.reserved;
+  };
+
+  const setReserved = (theater: Theater): Theater => {
+    theater.film
+      .find((f) => f.id === storage.filmId)!
+      .schedule.find((s) => s.id === storage.scheduleId)!
+      .seat.find((s) => s.row === seat.row)!
+      .column.find((c) => c.seatName === seat.seatName)!.reserved = true;
+
+    return theater;
+  };
+
   const clickConfirm = () => {
+    // axios
+    //   .get(`http://localhost:5000/theater/${storage.theaterId}`)
     axios
       .get(`http://localhost:5000/theater/${storage.theaterId}`)
       .then((response) => {
-        const theater: Theater = response.data;
-
-        const reserved = theater.film
-          .find((f) => f.id === storage.filmId)
-          ?.schedule.find((s) => s.id === storage.scheduleId)
-          ?.seat.find((s) => s.row === seat.row)
-          ?.column.find((c) => c.seatName === seat.seatName)?.reserved;
-
+        const reserved = isReserved(response.data);
         if (reserved) {
           //TODO 座席選択可能モーダルを表示
           return;
         }
-
-        theater.film
-          .find((f) => f.id === storage.filmId)!
-          .schedule.find((s) => s.id === storage.scheduleId)!
-          .seat.find((s) => s.row === seat.row)!
-          .column.find((c) => c.seatName === seat.seatName)!.reserved = true;
-
+        const theater = setReserved(response.data);
+        // axios.put(`http://localhost:5000/theater/${storage.theaterId}`, {
         axios.put(`http://localhost:5000/theater/${storage.theaterId}`, {
           id: theater.id,
           name: theater.name,
           film: theater.film,
         });
-
         router.push({
           pathname: "../complete",
           query: {
             paymentCode: `ABC${storage.theaterId}${storage.filmId}${storage.scheduleId}${seat.row}${seat.seatName}`,
           },
         });
+      })
+      .catch((e) => {
+        axios
+          .get(
+            `https://my-json-server.typicode.com/sado-haruki/dbjson/theater/${storage.theaterId}`
+          )
+          .then((response) => {
+            const reserved = isReserved(response.data);
+            if (reserved) {
+              //TODO 座席選択可能モーダルを表示
+              return;
+            }
+            const theater = setReserved(response.data);
+            axios.put(
+              `https://my-json-server.typicode.com/sado-haruki/dbjson/theater/${storage.theaterId}`,
+              {
+                id: theater.id,
+                name: theater.name,
+                film: theater.film,
+              }
+            );
+            router.push({
+              pathname: "../complete",
+              query: {
+                paymentCode: `ABC${storage.theaterId}${storage.filmId}${storage.scheduleId}${seat.row}${seat.seatName}`,
+              },
+            });
+          });
       });
   };
 

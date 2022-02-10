@@ -7,7 +7,6 @@ import Schedule from "../../components/Schedule";
 
 const Index = () => {
   const data = useRef<Theater[]>();
-  const [show, setshow] = useState(false);
   const [value, setvalue] = useState<Theater[]>();
   const [showDate, setshowDate] = useState("2/7(月)");
 
@@ -23,26 +22,44 @@ const Index = () => {
               scheduleArray.push(schedule);
             }
           });
-          if(scheduleArray.length !== 0){
-          filmArray.push({ id: film.id, name: film.name, schedule: scheduleArray })};
+          if (scheduleArray.length !== 0) {
+            filmArray.push({
+              id: film.id,
+              name: film.name,
+              schedule: scheduleArray,
+            });
+          }
         });
-        if(filmArray.length !== 0){
-        theaterArray.push({ id: theater.id, name: theater.name, film: filmArray })};
+        if (filmArray.length !== 0) {
+          theaterArray.push({
+            id: theater.id,
+            name: theater.name,
+            film: filmArray,
+          });
+        }
       });
     }
     return theaterArray;
   },[showDate]);
 
-useEffect(() => setvalue(dateTab()), [showDate,dateTab]);
+  useEffect(() => setvalue(dateTab()), [showDate,dateTab]);
 
-useEffect(() => {
-  axios.get("http://localhost:5000/theater").then((response) => {
-    data.current = response.data;
-    console.log(data.current);
-    setvalue(dateTab());
-    setshow(true);
-  });
-}, [ ,dateTab]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/theater", { timeout: 100 })
+      .then((response) => {
+        data.current = response.data;
+        setvalue(dateTab());
+      })
+      .catch((e) => {
+        axios
+          .get("https://my-json-server.typicode.com/sado-haruki/dbjson/theater")
+          .then((response) => {
+            data.current = response.data;
+            setvalue(dateTab());
+          });
+      });
+  }, [, dateTab]);
 
   return (
     <>
