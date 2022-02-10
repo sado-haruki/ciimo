@@ -1,7 +1,7 @@
 import router from "next/router";
 import { Film, ScheduleType, Theater } from "../types/Theater";
 import { Reservation } from "../types/Reservation";
-import styles from "../../styles/schedule/schedule.module.scss";
+import styles from "../styles/schedule/schedule.module.scss";
 
 interface ScheduleProps {
   theaters: Theater[];
