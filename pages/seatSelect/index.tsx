@@ -5,8 +5,9 @@ import { Theater, Seat, Column } from '../../types/Theater'
 import { Reservation, ReservationSeat } from '../../types/Reservation';
 import Link from 'next/link';
 import Header from '../../components/Header';
+
 import styles from '../../styles/seatSelect/index.module.scss'
-import SeatButton from '../components/seatButton';
+import SeatButton from '../../components/SeatButton';
 
 const toJson = (data: string | null) => {
   return data ? JSON.parse(data) : null;
