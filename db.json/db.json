@@ -206,7 +206,7 @@
           "schedule": [
             {
               "id": 1,
-              "date": "2/7(月)",
+              "date": "2/8(火)",
               "startTime": "10:00",
               "endTime": "11:30",
               "seat" :[
@@ -401,7 +401,7 @@
           "schedule": [
             {
               "id": 1,
-              "date": "2/7(月)",
+              "date": "2/9(水)",
               "startTime": "10:00",
               "endTime": "11:30",
               "seat" :[

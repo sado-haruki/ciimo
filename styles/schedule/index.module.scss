@@ -1,44 +1,58 @@
-@import '../variables.scss';
+@import "../variables.scss";
 
 .main {
-    color: $text-color;
-    padding: 5rem 8.25rem 3rem;
+  color: $text-color;
+  padding: 1.5rem 8.25rem 3rem;
 }
 
-.back{
-    font-size: $main;
-    color: $main-gray;
+.back {
+  font-size: $main;
+  color: $main-gray;
 }
 
 .title {
-    font-size: $title;
-    margin-bottom: 1rem;
-    font-weight: bold;
+  font-size: $title;
+  margin-bottom: 1rem;
+  font-weight: bold;
 }
 
 .contants {
-    padding: 1.5rem 5.375rem 2.25rem;
-    background-color: $bg-color;
+  padding: 1.5rem 5.375rem 2.25rem;
+  background-color: $bg-color;
+  min-height: 38rem;
 }
 
-.dateTabs{
-    display: flex;
-    width: 100%;
-    :active{
-        border: solid 0.0625rem $red;
-        background-color: $red;
-        color: white;
-    }
+.dateTabs {
+  flex-wrap: wrap;
+  display: flex;
+  width: 100%;
+  :active {
+    border: solid 0.0625rem $red;
+    background-color: $red;
+    color: white;
+  }
 }
 
-.dateTab{
-    flex-grow: 1;
-    justify-content: center;
-    display: flex;
-    margin-right: -0.0625rem;
-    color: $text-color;
-    border-radius: 0.25rem;
-    border: solid 0.0625rem $main-gray;
-    background-color: white;
-    cursor: pointer;
+.dateTab,
+.selected {
+  padding: 0.625rem 0;
+  flex-grow: 1;
+  justify-content: center;
+  display: flex;
+  margin-right: -0.0625rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.dateTab {
+  color: $text-color;
+  border: solid 0.0625rem $main-gray;
+  background-color: white;
+}
+
+.selected {
+  z-index: 1;
+  color: white;
+  border: solid 0.0625rem $red;
+  background-color: $red;
 }

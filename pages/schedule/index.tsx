@@ -1,23 +1,48 @@
 import axios from "axios";
-import { useEffect, useRef, useState } from "react";
-import { Theater } from "../../types/Theater";
-import Schedule from "./Schedule";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { Film, ScheduleType, Theater } from "../../types/Theater";
 import Header from "../components/Header";
 import styles from "../../styles/schedule/index.module.scss";
+import Schedule from "./Schedule";
 
 const Index = () => {
   const data = useRef<Theater[]>();
   const [show, setshow] = useState(false);
+  const [value, setvalue] = useState<Theater[]>();
+  const [showDate, setshowDate] = useState("2/7(月)");
 
-  useEffect(() => {
-    axios.get("http://localhost:5000/theater").then((response) => {
-      data.current = response.data;
-      console.log(data.current);
-      setshow(true);
-    });
-  }, []);
+  const dateTab = useCallback(():Theater[] => {
+    let theaterArray: Theater[] = [];
+    if (data.current) {
+      data.current.forEach((theater) => {
+        let filmArray: Film[] = [];
+        theater.film.forEach((film) => {
+          let scheduleArray: ScheduleType[] = [];
+          film.schedule.forEach((schedule) => {
+            if (schedule.date === showDate) {
+              scheduleArray.push(schedule);
+            }
+          });
+          if(scheduleArray.length !== 0){
+          filmArray.push({ id: film.id, name: film.name, schedule: scheduleArray })};
+        });
+        if(filmArray.length !== 0){
+        theaterArray.push({ id: theater.id, name: theater.name, film: filmArray })};
+      });
+    }
+    return theaterArray;
+  },[showDate]);
 
-  // 日付タブを押すと、dateで絞り込んで表示する
+useEffect(() => setvalue(dateTab()), [showDate,dateTab]);
+
+useEffect(() => {
+  axios.get("http://localhost:5000/theater").then((response) => {
+    data.current = response.data;
+    console.log(data.current);
+    setvalue(dateTab());
+    setshow(true);
+  });
+}, [ ,dateTab]);
 
   return (
     <>
@@ -28,19 +53,54 @@ const Index = () => {
         <div className={styles.title}>検索結果</div>
         <div className={styles.contants}>
           {/* 日付タブ実装時に戻す */}
-          {/* <div className={styles.dateTabs}>
-            <button className={styles.dateTab}>2/7(月)</button>
-            <button className={styles.dateTab}>2/8(火)</button>
-            <button className={styles.dateTab}>2/9(水)</button>
-            <button className={styles.dateTab}>2/10(木)</button>
-            <button className={styles.dateTab}>2/11(金)</button>
-            <button className={styles.dateTab}>2/12(土)</button>
-            <button className={styles.dateTab}>2/13(日)</button>
-          </div> */}
-          {data.current ? (
-            <Schedule theaters={data.current}></Schedule>
+          <div className={styles.dateTabs}>
+            <button
+              className={showDate == "2/7(月)"?(styles.selected):(styles.dateTab)}
+              onClick={() => setshowDate("2/7(月)")}
+            >
+              2/7(月)
+            </button>
+            <button
+              className={showDate == "2/8(火)"?(styles.selected):(styles.dateTab)}
+              onClick={() => setshowDate("2/8(火)")}
+            >
+              2/8(火)
+            </button>
+            <button
+              className={showDate == "2/9(水)"?(styles.selected):(styles.dateTab)}
+              onClick={() => setshowDate("2/9(水)")}
+            >
+              2/9(水)
+            </button>
+            <button
+              className={showDate == "2/10(木)"?(styles.selected):(styles.dateTab)}
+              onClick={() => setshowDate("2/10(木)")}
+            >
+              2/10(木)
+            </button>
+            <button
+              className={showDate == "2/11(金)"?(styles.selected):(styles.dateTab)}
+              onClick={() => setshowDate("2/11(金)")}
+            >
+              2/11(金)
+            </button>
+            <button
+              className={showDate == "2/12(土)"?(styles.selected):(styles.dateTab)}
+              onClick={() => setshowDate("2/12(土)")}
+            >
+              2/12(土)
+            </button>
+            <button
+              className={showDate == "2/13(日)"?(styles.selected):(styles.dateTab)}
+              onClick={() => setshowDate("2/13(日)")}
+            >
+              2/13(日)
+            </button>
+          </div>
+          {value ? (
+            <Schedule theaters={value}></Schedule>
           ) : (
-            <div>読み込み中</div>
+            <div> </div>
           )}
         </div>
       </div>
