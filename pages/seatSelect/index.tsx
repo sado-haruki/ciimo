@@ -7,6 +7,7 @@ import Link from "next/link";
 import Header from "../../components/Header";
 import styles from "../../styles/seatSelect/index.module.scss";
 import SeatButton from "../../components/SeatButton";
+import Flow from "../../components/Flow";
 
 const toJson = (data: string | null) => {
   return data ? JSON.parse(data) : null;
@@ -85,6 +86,7 @@ const SeatSelect: NextPage = () => {
     <>
       <Header />
       <div className={styles.main}>
+      <Flow select={1}/>
         <div className={styles.contants}>
           <div className={styles.selectField}>
             {

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import styles from "../../styles/complete.module.scss";
 import { Reservation, ReservationSeat } from "../../types/Reservation";
 import Header from "../../components/Header";
+import Flow from "../../components/Flow";
 
 const ReservationComplete: NextPage = () => {
   const router = useRouter();
@@ -35,6 +36,7 @@ const ReservationComplete: NextPage = () => {
     <>
     <Header/>
     <div className={styles.container}>
+    <Flow select={3}/>
       <main className={styles.main}>
         <h1 className={styles.title}>予約が完了しました。</h1>
         <div className={styles.items}>

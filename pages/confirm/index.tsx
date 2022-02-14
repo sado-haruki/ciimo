@@ -9,6 +9,7 @@ import Header from "../../components/Header";
 import Link from "next/link";
 import SeatButton from "../../components/SeatButton";
 import { resolve } from "node:path/win32";
+import Flow from "../../components/Flow";
 
 const ReservationConfirm: NextPage = () => {
   const router = useRouter();
@@ -187,6 +188,7 @@ const ReservationConfirm: NextPage = () => {
     <>
       <Header />
       <div className={styles.container}>
+        <Flow select={2}/>
         <main className={styles.main}>
           <div className={styles.items}>
             <div>
