@@ -77,12 +77,21 @@ const ReservationConfirm: NextPage = () => {
     axios
       .get(`http://localhost:5000/theater/${storage.theaterId}`)
       .then((response) => {
-        const reserved = isReserved(response.data);
+
+        const theater = setReserved(response.data);
+        const responseSchedule = theater.film
+          .find((f) => f.id === storage.filmId)
+          ?.schedule.find((s) => s.id === storage.scheduleId);
+
+        const reserved = responseSchedule?.seat
+          .find((s) => s.row === seat.row)
+          ?.column.find((c) => c.seatName === seat.seatName)?.reserved;
+
         if (reserved) {
+          seats.current = responseSchedule.seat;
           setModal(true);
           return;
         }
-        const theater = setReserved(response.data);
         // axios.put(`http://localhost:5000/theater/${storage.theaterId}`, {
         axios.put(`http://localhost:5000/theater/${storage.theaterId}`, {
           id: theater.id,
@@ -220,8 +229,10 @@ const ReservationConfirm: NextPage = () => {
                   <div className={styles.contants}>
                     <div className={styles.captions}>
                       <span className={styles.erorrIcon}>!</span>
-                      <span className={styles.erorrText}>選択された席は既に予約されています</span>
-                    <div>座席を選択してください</div>
+                      <span className={styles.erorrText}>
+                        選択された席は既に予約されています
+                      </span>
+                      <div>座席を選択してください</div>
                     </div>
                     <div className={styles.selectField}>
                       {
