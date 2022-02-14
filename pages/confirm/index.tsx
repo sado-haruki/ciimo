@@ -223,6 +223,7 @@ const ReservationConfirm: NextPage = () => {
             <button onClick={clickConfirm} className={styles.complete}>
               予約を確定する
             </button>
+            </div>
             {modal ? (
               <div className={styles.overlay}>
                 <div className={styles.modalField}>
@@ -288,7 +289,6 @@ const ReservationConfirm: NextPage = () => {
             ) : (
               <div> </div>
             )}
-          </div>
         </main>
       </div>
     </>
