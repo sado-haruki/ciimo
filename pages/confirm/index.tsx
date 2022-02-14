@@ -1,17 +1,40 @@
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import styles from "../../styles/confirm.module.scss";
 import { Reservation, ReservationSeat } from "../../types/Reservation";
 import axios from "axios";
-import { Theater } from "../../types/Theater";
+import { Seat, Theater } from "../../types/Theater";
 import Header from "../../components/Header";
+import Link from "next/link";
+import SeatButton from "../../components/SeatButton";
+import { resolve } from "node:path/win32";
 
 const ReservationConfirm: NextPage = () => {
   const router = useRouter();
 
   const [storage, setStorage] = useState({} as Reservation);
   const [seat, setSeat] = useState({} as ReservationSeat);
+  const [modal, setModal] = useState(false);
+  const seats = useRef<Seat[]>([]);
+  const reservationSeat = useRef<ReservationSeat>();
+  const [readFlg, setReadFlg] = useState(false);
+
+  const theaterGetJson = useCallback(() => {
+    const reservation = toJson(
+      localStorage.getItem("reservation")
+    ) as Reservation;
+    axios.get("http://localhost:5000/theater/").then((response) => {
+      const theaters: Theater[] = response.data;
+      seats.current =
+        theaters
+          .find((theater) => theater.id === reservation.theaterId)
+          ?.film.find((f) => f.id === reservation.filmId)
+          ?.schedule.find((s) => s.id === reservation.scheduleId)?.seat || [];
+      console.log(seats);
+      setReadFlg(true);
+    });
+  }, []);
 
   useEffect(() => {
     setStorage(
@@ -20,7 +43,8 @@ const ReservationConfirm: NextPage = () => {
     setSeat(
       toJsonStorage(localStorage.getItem("reservationSeat")) as ReservationSeat
     );
-  }, []);
+    theaterGetJson();
+  }, [theaterGetJson]);
 
   const toJsonStorage = (storage: string | null): string => {
     if (storage !== null) {
@@ -55,7 +79,7 @@ const ReservationConfirm: NextPage = () => {
       .then((response) => {
         const reserved = isReserved(response.data);
         if (reserved) {
-          //TODO 座席選択可能モーダルを表示
+          setModal(true);
           return;
         }
         const theater = setReserved(response.data);
@@ -100,6 +124,45 @@ const ReservationConfirm: NextPage = () => {
             });
           });
       });
+  };
+
+  const toJson = (data: string | null) => {
+    return data ? JSON.parse(data) : null;
+  };
+
+  const clickSeat = (seat: ReservationSeat) => {
+    const reservationSeatTemp: ReservationSeat = {
+      row: seat.row,
+      seatName: seat.seatName,
+    };
+
+    reservationSeat.current = reservationSeatTemp;
+  };
+
+  const confirm = (e: any) => {
+    e.stopPropagation();
+    theaterGetJson();
+
+    const reservedTemp = seats.current
+      .find((seat) => seat.row === reservationSeat.current?.row)
+      ?.column.find(
+        (columnTemp) =>
+          columnTemp.seatName === reservationSeat.current?.seatName
+      )?.reserved;
+
+    if (reservedTemp) {
+      e.preventDefault();
+      return;
+    }
+
+    localStorage.setItem(
+      "reservationSeat",
+      JSON.stringify(reservationSeat.current)
+    );
+    setModal(false);
+    setSeat(
+      toJsonStorage(localStorage.getItem("reservationSeat")) as ReservationSeat
+    );
   };
 
   return (
@@ -151,11 +214,73 @@ const ReservationConfirm: NextPage = () => {
             <button onClick={clickConfirm} className={styles.complete}>
               予約を確定する
             </button>
+            {modal ? (
+              <div className={styles.overlay}>
+                <div className={styles.modalField}>
+                  <div className={styles.contants}>
+                    <div className={styles.captions}>
+                      <span className={styles.erorrIcon}>!</span>
+                      <span className={styles.erorrText}>選択された席は既に予約されています</span>
+                    <div>座席を選択してください</div>
+                    </div>
+                    <div className={styles.selectField}>
+                      {
+                        // シート情報が取得できた場合
+                        readFlg ? (
+                          <>
+                            <div className={styles.screen}>SCREEN</div>
+                            {seats.current.map((seat, i) => (
+                              <div className={styles.seats} key={i}>
+                                <span className={styles.row}>{seat.row}</span>
+                                {seat.column.map((columTemp, j) => (
+                                  <SeatButton
+                                    key={j}
+                                    selectedSeat={reservationSeat.current || {}}
+                                    reserved={columTemp.reserved}
+                                    clickSeat={clickSeat}
+                                    seat={{
+                                      row: seat.row,
+                                      seatName: columTemp.seatName,
+                                    }}
+                                  />
+                                ))}
+                                <div key={i} className={styles.row}>
+                                  {seat.row}
+                                </div>
+                              </div>
+                            ))}
+                          </>
+                        ) : (
+                          // シート情報が取得できていない場合
+                          <>読み込み中</>
+                        )
+                      }
+                    </div>
+                    <div className={styles.buttons}>
+                      <Link href={"/seatSelect"}>
+                        <a>
+                          <button className={styles.back}>
+                            座席選択画面に戻る
+                          </button>
+                        </a>
+                      </Link>
+
+                      <Link href={"/confirm"}>
+                        <a onClick={confirm}>
+                          <button className={styles.confirm}>決定する</button>
+                        </a>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div> </div>
+            )}
           </div>
         </main>
       </div>
     </>
   );
 };
-
 export default ReservationConfirm;
