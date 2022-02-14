@@ -1,0 +1,74 @@
+@import "../variables.scss";
+
+.items {
+  display: flex;
+  margin-bottom: 1rem;
+  width: 100%;
+  align-items: stretch;
+}
+
+.item {
+  display: flex;
+  flex-grow: 1;
+  margin-right: -1.5rem;
+}
+
+.label {
+  height: 3rem;
+  width: 100%;
+  padding: 0.5rem 1rem 0.5rem 0;
+  display: inline-block;
+  background-color: $sub-gray;
+  color: white;
+  font-size: $large;
+  font-weight: bold;
+  vertical-align: top;
+  text-align: center;
+}
+
+.front,
+.back {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  vertical-align: top;
+  border: solid 1.5rem;
+}
+
+.front {
+  border-color: transparent transparent transparent $sub-gray;
+}
+
+.back {
+  border-color: $sub-gray $sub-gray $sub-gray transparent;
+}
+
+.selectedback,
+.selectedfront {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  vertical-align: top;
+  border: solid 1.5rem;
+}
+
+.selectedback {
+  border-color: $main-gray $main-gray $main-gray transparent;
+}
+
+.selectedlabel {
+  height: 3rem;
+  width: 100%;
+  padding: 0.5rem 1rem 0.5rem 0;
+  display: inline-block;
+  background-color: $main-gray;
+  color: white;
+  font-size: $large;
+  font-weight: bold;
+  vertical-align: top;
+  text-align: center;
+}
+
+.selectedfront {
+  border-color: transparent transparent transparent $main-gray;
+}

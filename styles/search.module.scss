@@ -1,0 +1,69 @@
+@import "variables.scss";
+
+.main {
+  color: $text-color;
+  padding: 1.5rem 8.25rem 3rem;
+}
+
+.title {
+  font-size: $title;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.contants {
+  padding: 1.5rem 5.375rem 2.25rem;
+  background-color: $bg-color;
+  min-height: 38rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.items {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  display: inline-block;
+  min-width: 9.75rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
+
+.checkbox+.checkbox{
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.checkbox{
+  display: block;
+  margin-left: 10.75rem;
+}
+
+.dropDown {
+  height: 2.5rem;
+  min-width: 20.5rem;
+  margin-bottom: 1rem;
+}
+
+.buttons {
+  min-width: 31.25rem;
+  display: flex;
+  margin-top: auto;
+  margin-bottom: 2.5rem;
+  justify-content: end;
+}
+
+.searchButton{
+  margin-top: auto;
+  margin-top: 1rem;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  border: solid 0.0625rem $red;
+  background-color: $red;
+  cursor: pointer;
+}
