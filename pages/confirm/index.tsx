@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import styles from "../../styles/confirm.module.scss";
 import { Reservation, ReservationSeat } from "../../types/Reservation";
 import axios from "axios";
-import { Seat, Theater } from "../../types/Theater";
+import { Column, Film, ScheduleType, Seat, Theater } from "../../types/Theater";
 import Header from "../../components/Header";
 import Link from "next/link";
 import SeatButton from "../../components/SeatButton";
@@ -72,27 +72,26 @@ const ReservationConfirm: NextPage = () => {
   };
 
   const clickConfirm = () => {
-    // axios
-    //   .get(`http://localhost:5000/theater/${storage.theaterId}`)
     axios
       .get(`http://localhost:5000/theater/${storage.theaterId}`)
       .then((response) => {
 
-        const theater = setReserved(response.data);
-        const responseSchedule = theater.film
-          .find((f) => f.id === storage.filmId)
-          ?.schedule.find((s) => s.id === storage.scheduleId);
+        const responseSchedule = response.data.film
+
+          .find((f:Film) => f.id === storage.filmId)
+          ?.schedule.find((s:ScheduleType) => s.id === storage.scheduleId);
 
         const reserved = responseSchedule?.seat
-          .find((s) => s.row === seat.row)
-          ?.column.find((c) => c.seatName === seat.seatName)?.reserved;
+          .find((s:Seat) => s.row === seat.row)
+          ?.column.find((c:Column) => c.seatName === seat.seatName)?.reserved;
 
         if (reserved) {
           seats.current = responseSchedule.seat;
           setModal(true);
           return;
         }
-        // axios.put(`http://localhost:5000/theater/${storage.theaterId}`, {
+
+        const theater = setReserved(response.data);
         axios.put(`http://localhost:5000/theater/${storage.theaterId}`, {
           id: theater.id,
           name: theater.name,
