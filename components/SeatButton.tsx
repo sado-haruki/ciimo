@@ -1,30 +1,47 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../styles/components/seatButton.module.scss";
 import { ReservationSeat } from "../types/Reservation";
 
+interface RedrawProps {
+  redrawFlg: boolean,
+  setRedrawFlg: React.Dispatch<React.SetStateAction<boolean>>,
+}
+
 interface seatButtonProps {
   key: number;
-  selectedSeat: ReservationSeat;
   seat: ReservationSeat;
   reserved: boolean;
   clickSeat: Function;
+  value?: RedrawProps;
+  redrawFlg: boolean;
+  setRedrawFlg: React.Dispatch<React.SetStateAction<boolean>>;
+  reservationSeat: ReservationSeat;
 }
 
 const SeatButton = ({
   key,
-  selectedSeat,
   reserved,
   clickSeat,
   seat,
+  redrawFlg,
+  setRedrawFlg,
+  reservationSeat
 }: seatButtonProps) => {
-  const [selectedFlg, setSelectedFlg] = useState(false);
+  const [selectedFlg, setSelectedFlg] = useState(reserved);
+
+  useEffect(() => {
+    setSelectedFlg(JSON.stringify(reservationSeat) === JSON.stringify(seat));
+  }, [redrawFlg])
 
   return (
     <button
       key={key}
       onClick={() => {
-        clickSeat(seat);
-        setSelectedFlg(!(selectedSeat === seat));
+        const seatTemp: ReservationSeat = clickSeat(seat);
+        // console.log(reservationSeat);
+        setRedrawFlg(!redrawFlg);
+        reservationSeat = seat;
+        console.log(reservationSeat);
       }}
       className={`${selectedFlg ? styles.selected : styles.notSelected} 
                 ${reserved ? styles.disabled : styles.abled}`}
