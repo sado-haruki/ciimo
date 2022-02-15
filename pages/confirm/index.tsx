@@ -10,6 +10,7 @@ import Link from "next/link";
 import SeatButton from "../../components/SeatButton";
 import { resolve } from "node:path/win32";
 import Flow from "../../components/Flow";
+import TheaterForm from "../../components/TheaterForm";
 
 const ReservationConfirm: NextPage = () => {
   const router = useRouter();
@@ -19,13 +20,14 @@ const ReservationConfirm: NextPage = () => {
   const [modal, setModal] = useState(false);
   const seats = useRef<Seat[]>([]);
   const reservationSeat = useRef<ReservationSeat>();
+  const [selectSeat, setSelectSeat] = useState<ReservationSeat>()
   const [readFlg, setReadFlg] = useState(false);
 
   const theaterGetJson = useCallback(() => {
     const reservation = toJson(
       localStorage.getItem("reservation")
     ) as Reservation;
-    
+
     axios.get("http://localhost:5000/theater/", { timeout: 200 }).then((response) => {
       const theaters: Theater[] = response.data;
       seats.current =
@@ -89,12 +91,12 @@ const ReservationConfirm: NextPage = () => {
 
         const responseSchedule = response.data.film
 
-          .find((f:Film) => f.id === storage.filmId)
-          ?.schedule.find((s:ScheduleType) => s.id === storage.scheduleId);
+          .find((f: Film) => f.id === storage.filmId)
+          ?.schedule.find((s: ScheduleType) => s.id === storage.scheduleId);
 
         const reserved = responseSchedule?.seat
-          .find((s:Seat) => s.row === seat.row)
-          ?.column.find((c:Column) => c.seatName === seat.seatName)?.reserved;
+          .find((s: Seat) => s.row === seat.row)
+          ?.column.find((c: Column) => c.seatName === seat.seatName)?.reserved;
 
         if (reserved) {
           seats.current = responseSchedule.seat;
@@ -176,7 +178,7 @@ const ReservationConfirm: NextPage = () => {
 
     localStorage.setItem(
       "reservationSeat",
-      JSON.stringify(reservationSeat.current)
+      JSON.stringify(selectSeat)
     );
     setModal(false);
     setSeat(
@@ -188,7 +190,7 @@ const ReservationConfirm: NextPage = () => {
     <>
       <Header />
       <div className={styles.container}>
-        <Flow select={2}/>
+        <Flow select={2} />
         <main className={styles.main}>
           <div className={styles.items}>
             <div>
@@ -234,72 +236,53 @@ const ReservationConfirm: NextPage = () => {
             <button onClick={clickConfirm} className={styles.complete}>
               予約を確定する
             </button>
-            </div>
-            {modal ? (
-              <div className={styles.overlay}>
-                <div className={styles.modalField}>
-                  <div className={styles.contants}>
-                    <div className={styles.captions}>
-                      <span className={styles.erorrIcon}>!</span>
-                      <span className={styles.erorrText}>
-                        選択された席は既に予約されています
-                      </span>
-                      <div>座席を選択してください</div>
-                    </div>
-                    <div className={styles.selectField}>
-                      {
-                        // シート情報が取得できた場合
-                        readFlg ? (
-                          <>
-                            <div className={styles.screen}>SCREEN</div>
-                            {seats.current.map((seat, i) => (
-                              <div className={styles.seats} key={i}>
-                                <span className={styles.row}>{seat.row}</span>
-                                {seat.column.map((columTemp, j) => (
-                                  <SeatButton
-                                    key={j}
-                                    selectedSeat={reservationSeat.current || {}}
-                                    reserved={columTemp.reserved}
-                                    clickSeat={clickSeat}
-                                    seat={{
-                                      row: seat.row,
-                                      seatName: columTemp.seatName,
-                                    }}
-                                  />
-                                ))}
-                                <div key={i} className={styles.row}>
-                                  {seat.row}
-                                </div>
-                              </div>
-                            ))}
-                          </>
-                        ) : (
-                          // シート情報が取得できていない場合
-                          <>読み込み中</>
-                        )
-                      }
-                    </div>
-                    <div className={styles.buttons}>
-                      <Link href={"/seatSelect"}>
-                        <a>
-                          <button className={styles.back}>
-                            座席選択画面に戻る
-                          </button>
-                        </a>
-                      </Link>
+          </div>
+          {modal ? (
+            <div className={styles.overlay}>
+              <div className={styles.modalField}>
+                <div className={styles.contants}>
+                  <div className={styles.captions}>
+                    <span className={styles.erorrIcon}>!</span>
+                    <span className={styles.erorrText}>
+                      選択された席は既に予約されています
+                    </span>
+                    <div>座席を選択してください</div>
+                  </div>
+                  <div className={styles.selectField}>
+                    {
+                      // シート情報が取得できた場合
+                      readFlg ? (
+                        <TheaterForm
+                          seats={seats.current}
+                          setSelectSeat={setSelectSeat || {}}
+                        />
+                      ) : (
+                        // シート情報が取得できていない場合
+                        <>読み込み中</>
+                      )
+                    }
+                  </div>
+                  <div className={styles.buttons}>
+                    <Link href={"/seatSelect"}>
+                      <a>
+                        <button className={styles.back}>
+                          座席選択画面に戻る
+                        </button>
+                      </a>
+                    </Link>
 
-                      <Link href={"/confirm"}>
-                        <a onClick={confirm}>
-                          <button className={styles.confirm}>決定する</button>
-                        </a>
-                      </Link>
-                    </div>
+                    <Link href={"/confirm"}>
+                      <a onClick={confirm}>
+                        <button className={styles.confirm}>決定する</button>
+                      </a>
+                    </Link>
                   </div>
                 </div>
               </div>
-            ) : (
-              <div> </div>
-            )}
+            </div>
+          ) : (
+            <div> </div>
+          )}
         </main>
       </div>
     </>
