@@ -20,27 +20,33 @@
                   "column": [
                     {
                       "seatName": "1",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 1
                     },
                     {
                       "seatName": "2",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 1
                     },
                     {
                       "seatName": "3",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 2
                     },
                     {
                       "seatName": "4",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 2
                     },
                     {
                       "seatName": "5",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 3
                     },
                     {
                       "seatName": "6",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 3
                     }
                   ]
                 },
@@ -49,27 +55,33 @@
                   "column": [
                     {
                       "seatName": "1",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 1
                     },
                     {
                       "seatName": "2",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 1
                     },
                     {
                       "seatName": "3",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 2
                     },
                     {
                       "seatName": "4",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 2
                     },
                     {
                       "seatName": "5",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 3
                     },
                     {
                       "seatName": "6",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 3
                     }
                   ]
                 },
@@ -78,11 +90,13 @@
                   "column": [
                     {
                       "seatName": "1",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 4
                     },
                     {
                       "seatName": "2",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 4
                     },
                     {
                       "seatName": "3",
@@ -107,11 +121,13 @@
                   "column": [
                     {
                       "seatName": "1",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 4
                     },
                     {
                       "seatName": "2",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 4
                     },
                     {
                       "seatName": "3",
@@ -215,27 +231,33 @@
                   "column": [
                     {
                       "seatName": "1",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 1
                     },
                     {
                       "seatName": "2",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 1
                     },
                     {
                       "seatName": "3",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 2
                     },
                     {
                       "seatName": "4",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 2
                     },
                     {
                       "seatName": "5",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 3
                     },
                     {
                       "seatName": "6",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 3
                     }
                   ]
                 },
@@ -244,27 +266,33 @@
                   "column": [
                     {
                       "seatName": "1",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 1
                     },
                     {
                       "seatName": "2",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 1
                     },
                     {
                       "seatName": "3",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 2
                     },
                     {
                       "seatName": "4",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 2
                     },
                     {
                       "seatName": "5",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 3
                     },
                     {
                       "seatName": "6",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 3
                     }
                   ]
                 },
@@ -273,11 +301,13 @@
                   "column": [
                     {
                       "seatName": "1",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 4
                     },
                     {
                       "seatName": "2",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 4
                     },
                     {
                       "seatName": "3",
@@ -302,11 +332,13 @@
                   "column": [
                     {
                       "seatName": "1",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 4
                     },
                     {
                       "seatName": "2",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 4
                     },
                     {
                       "seatName": "3",
@@ -410,27 +442,33 @@
                   "column": [
                     {
                       "seatName": "1",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 1
                     },
                     {
                       "seatName": "2",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 1
                     },
                     {
                       "seatName": "3",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 2
                     },
                     {
                       "seatName": "4",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 2
                     },
                     {
                       "seatName": "5",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 3
                     },
                     {
                       "seatName": "6",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 3
                     }
                   ]
                 },
@@ -439,27 +477,33 @@
                   "column": [
                     {
                       "seatName": "1",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 1
                     },
                     {
                       "seatName": "2",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 1
                     },
                     {
                       "seatName": "3",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 2
                     },
                     {
                       "seatName": "4",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 2
                     },
                     {
                       "seatName": "5",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 3
                     },
                     {
                       "seatName": "6",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 3
                     }
                   ]
                 },
@@ -468,11 +512,13 @@
                   "column": [
                     {
                       "seatName": "1",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 4
                     },
                     {
                       "seatName": "2",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 4
                     },
                     {
                       "seatName": "3",
@@ -497,11 +543,13 @@
                   "column": [
                     {
                       "seatName": "1",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 4
                     },
                     {
                       "seatName": "2",
-                      "reserved": false
+                      "reserved": false,
+                      "zoneId": 4
                     },
                     {
                       "seatName": "3",
@@ -547,6 +595,7 @@
                     {
                       "seatName": "6",
                       "reserved": false
+                      
                     }
                   ]
                 },
