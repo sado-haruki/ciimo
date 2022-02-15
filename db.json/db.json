@@ -55,7 +55,7 @@
                   "column": [
                     {
                       "seatName": "1",
-                      "reserved": false,
+                      "reserved": true,
                       "zoneId": 1
                     },
                     {
@@ -694,7 +694,6 @@
       ]
     }
   ],
-  
   "zone": [
     {
       "id": 1,
@@ -731,6 +730,16 @@
     {
       "id": 9,
       "name": "後方・右側"
+    }
+  ],
+  "area": [
+    {
+      "id": 1,
+      "name": "横浜"
+    },
+    {
+      "id": 2,
+      "name": "みなとみらい"
     }
   ]
 }

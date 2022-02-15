@@ -28,7 +28,7 @@ const ReservationComplete: NextPage = () => {
   const clickTop = () => {
     localStorage.clear();
     router.push({
-      pathname: "../schedule",
+      pathname: "../search",
     });
   };
 

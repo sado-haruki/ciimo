@@ -4,6 +4,7 @@ import { Film, ScheduleType, Theater } from "../../types/Theater";
 import Header from "../../components/Header";
 import styles from "../../styles/schedule/index.module.scss";
 import Schedule from "../../components/Schedule";
+import router from "next/router";
 
 const Index = () => {
   const data = useRef<Theater[]>();
@@ -65,11 +66,9 @@ const Index = () => {
     <>
       <Header />
       <div className={styles.main}>
-        {/* TODO:検索画面実装時に戻す */}
-        {/* <div className={styles.back}>◀︎検索条件に戻る</div> */}
+        <div className={styles.back} onClick={() => router.push("/search")}>◀︎検索条件に戻る</div>
         <div className={styles.title}>検索結果</div>
         <div className={styles.contants}>
-          {/* 日付タブ実装時に戻す */}
           <div className={styles.dateTabs}>
             <button
               className={showDate == "2/7(月)"?(styles.selected):(styles.dateTab)}
