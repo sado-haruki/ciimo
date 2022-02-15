@@ -12,11 +12,16 @@ const Index = () => {
   const [showDate, setshowDate] = useState("2/7(月)");
   const router = useRouter();
 
-  const res = {
-    zoneId: Number(router.query.zoneId)
+
+  type SearchScedule = {
+    zoneId: Number
   }
 
   const dateTab = useCallback(():Theater[] => {
+    const res:SearchScedule = {
+      zoneId : Number(router.query.zoneId)
+    }
+
     let theaterArray: Theater[] = [];
     if (data.current) {
       data.current.forEach((theater) => {
@@ -29,10 +34,16 @@ const Index = () => {
               return;
             }
 
+            if(res.zoneId !== 0){
             let isAllReserved = false;
             schedule.seat.forEach((s) =>{
+              console.log(s.row)
+              console.log(s.column.filter(c => c.zoneId === res.zoneId))
+              
+              // isAllReserved = s.column.filter(c => c.zoneId === res.zoneId).every(c => !c.reserved)
               if(s.column.filter(c => c.zoneId === res.zoneId).every(c => c.reserved)){
                 isAllReserved = true;
+                console.log("a")
               }
             }) 
 
@@ -40,6 +51,12 @@ const Index = () => {
               scheduleArray.push(schedule);
             }
 
+            console.log(scheduleArray)
+          }
+            
+            // if (schedule.date === showDate) {
+            //   scheduleArray.push(schedule);
+            // }
           });
           if (scheduleArray.length !== 0) {
             filmArray.push({
@@ -64,6 +81,7 @@ const Index = () => {
   useEffect(() => setvalue(dateTab()), [showDate,dateTab]);
 
   useEffect(() => {
+
     axios
       .get("http://localhost:5000/theater", { timeout: 200 })
       .then((response) => {
