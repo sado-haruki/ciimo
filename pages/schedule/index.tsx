@@ -46,7 +46,7 @@ const Index = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/theater", { timeout: 100 })
+      .get("http://localhost:5000/theater", { timeout: 200 })
       .then((response) => {
         data.current = response.data;
         setvalue(dateTab());

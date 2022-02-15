@@ -24,15 +24,25 @@ const ReservationConfirm: NextPage = () => {
     const reservation = toJson(
       localStorage.getItem("reservation")
     ) as Reservation;
-    axios.get("http://localhost:5000/theater/").then((response) => {
+    
+    axios.get("http://localhost:5000/theater/", { timeout: 200 }).then((response) => {
       const theaters: Theater[] = response.data;
       seats.current =
         theaters
           .find((theater) => theater.id === reservation.theaterId)
           ?.film.find((f) => f.id === reservation.filmId)
           ?.schedule.find((s) => s.id === reservation.scheduleId)?.seat || [];
-      console.log(seats);
       setReadFlg(true);
+    }).catch((e) => {
+      axios.get("https://my-json-server.typicode.com/sado-haruki/dbjson/theater/").then((res) => {
+        const theaters: Theater[] = res.data;
+        seats.current =
+          theaters
+            .find((theater) => theater.id === reservation.theaterId)
+            ?.film.find((f) => f.id === reservation.filmId)
+            ?.schedule.find((s) => s.id === reservation.scheduleId)?.seat || [];
+        setReadFlg(true);
+      })
     });
   }, []);
 
