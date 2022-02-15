@@ -36,7 +36,7 @@ const SeatSelect: NextPage = () => {
     ) as Reservation;
 
     axios
-      .get("http://localhost:5000/theater/", { timeout: 500 })
+      .get("http://localhost:5000/theater/", { timeout: 200 })
       .then((response) => {
         searchSeat(reservation, response.data)
         setReadFlg(true);
