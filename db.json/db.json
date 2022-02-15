@@ -585,5 +585,44 @@
         }
       ]
     }
+  ],
+  
+  "zone": [
+    {
+      "id": 1,
+      "name": "front-left"
+    },
+    {
+      "id": 2,
+      "name": "front-center"
+    },
+    {
+      "id": 3,
+      "name": "front-right"
+    },
+    {
+      "id": 4,
+      "name": "center-left"
+    },
+    {
+      "id": 5,
+      "name": "center-center"
+    },
+    {
+      "id": 6,
+      "name": "center-right"
+    },
+    {
+      "id": 7,
+      "name": "back-left"
+    },
+    {
+      "id": 8,
+      "name": "back-center"
+    },
+    {
+      "id": 9,
+      "name": "back-right"
+    }
   ]
 }
