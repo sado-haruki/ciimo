@@ -4,12 +4,17 @@ import { Film, ScheduleType, Theater } from "../../types/Theater";
 import Header from "../../components/Header";
 import styles from "../../styles/schedule/index.module.scss";
 import Schedule from "../../components/Schedule";
-import router from "next/router";
+import { useRouter } from "next/router";
 
 const Index = () => {
   const data = useRef<Theater[]>();
   const [value, setvalue] = useState<Theater[]>();
   const [showDate, setshowDate] = useState("2/7(月)");
+  const router = useRouter();
+
+  const res = {
+    zoneId: Number(router.query.zoneId)
+  }
 
   const dateTab = useCallback(():Theater[] => {
     let theaterArray: Theater[] = [];
@@ -19,9 +24,22 @@ const Index = () => {
         theater.film.forEach((film) => {
           let scheduleArray: ScheduleType[] = [];
           film.schedule.forEach((schedule) => {
-            if (schedule.date === showDate) {
+
+            if(schedule.date !== showDate){
+              return;
+            }
+
+            let isAllReserved = false;
+            schedule.seat.forEach((s) =>{
+              if(s.column.filter(c => c.zoneId === res.zoneId).every(c => c.reserved)){
+                isAllReserved = true;
+              }
+            }) 
+
+            if (!isAllReserved) {
               scheduleArray.push(schedule);
             }
+
           });
           if (scheduleArray.length !== 0) {
             filmArray.push({
