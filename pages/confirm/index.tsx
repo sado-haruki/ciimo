@@ -37,7 +37,7 @@ const ReservationConfirm: NextPage = () => {
           ?.schedule.find((s) => s.id === reservation.scheduleId)?.seat || [];
       setReadFlg(true);
     }).catch((e) => {
-      axios.get("https://my-json-server.typicode.com/sado-haruki/dbjson/theater/").then((res) => {
+      axios.get("http://10.200.13.221:80/theater/").then((res) => {
         const theaters: Theater[] = res.data;
         seats.current =
           theaters
@@ -120,7 +120,7 @@ const ReservationConfirm: NextPage = () => {
       .catch((e) => {
         axios
           .get(
-            `https://my-json-server.typicode.com/sado-haruki/dbjson/theater/${storage.theaterId}`
+            `http://10.200.13.221:80/theater/${storage.theaterId}`
           )
           .then((response) => {
             const reserved = isReserved(response.data);
@@ -130,7 +130,7 @@ const ReservationConfirm: NextPage = () => {
             }
             const theater = setReserved(response.data);
             axios.put(
-              `https://my-json-server.typicode.com/sado-haruki/dbjson/theater/${storage.theaterId}`,
+              `http://10.200.13.221:80/theater/${storage.theaterId}`,
               {
                 id: theater.id,
                 name: theater.name,

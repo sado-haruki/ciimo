@@ -17,7 +17,6 @@ export const ReservationSeatContext = createContext<any>(null)
 
 const SeatSelect: NextPage = () => {
   const seats = useRef<Seat[]>([]);
-  const reservationSeat = useRef<ReservationSeat>();
   const [selectSeat, setSelectSeat] = useState<ReservationSeat>()
   const [readFlg, setReadFlg] = useState(false);
 
@@ -29,17 +28,26 @@ const SeatSelect: NextPage = () => {
     const reservation = toJson(
       localStorage.getItem("reservation")
     ) as Reservation;
-    axios.get("http://localhost:5000/theater/").then((response) => {
+    axios.get("http://localhost:5000/theater/", {timeout:500}).then((response) => {
       const theaters: Theater[] = response.data;
       seats.current =
         theaters
           .find((theater) => theater.id === reservation.theaterId)
           ?.film.find((f) => f.id === reservation.filmId)
           ?.schedule.find((s) => s.id === reservation.scheduleId)?.seat || [];
-      console.log(seats);
       setReadFlg(true);
+    }).catch((e) => {
+      axios.get("http://10.200.13.221:80/theater/").then((response) => {
+        const theaters: Theater[] = response.data;
+        seats.current =
+          theaters
+            .find((theater) => theater.id === reservation.theaterId)
+            ?.film.find((f) => f.id === reservation.filmId)
+            ?.schedule.find((s) => s.id === reservation.scheduleId)?.seat || [];
+        setReadFlg(true);
     });
-  };
+  })
+};
 
   const clickConfirm = (e: any) => {
     e.stopPropagation();

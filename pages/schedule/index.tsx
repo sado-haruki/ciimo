@@ -36,8 +36,26 @@ const Index = () => {
         theater.film.forEach((film) => {
           let scheduleArray: ScheduleType[] = [];
           film.schedule.forEach((schedule) => {
+            if (schedule.date !== showDate) {
+              return;
+            }
 
-            if (schedule.date === showDate) {
+            if (res.zoneId !== 0) {
+              let isZoneAllReserved: Boolean[] = [];
+              schedule.seat.forEach((s) => {
+                const zoneSeat = s.column.filter(
+                  (c) => c.zoneId === res.zoneId
+                );
+                if (zoneSeat.length !== 0) {
+                  isZoneAllReserved.push(zoneSeat.every((c) => c.reserved))
+                }
+              });
+
+              if (isZoneAllReserved.some((reserved) => !reserved)) {
+                scheduleArray.push(schedule);
+              }
+            }
+            else{
               scheduleArray.push(schedule);
             }
           });
@@ -73,7 +91,7 @@ const Index = () => {
       })
       .catch((e) => {
         axios
-          .get("https://my-json-server.typicode.com/sado-haruki/dbjson/theater")
+          .get("http://10.200.13.221:80/theater")
           .then((response) => {
             data.current = response.data;
             setvalue(dateTab());
@@ -85,7 +103,9 @@ const Index = () => {
     <>
       <Header />
       <div className={styles.main}>
-        <div className={styles.back} onClick={() => router.push("/search")}>◀︎検索条件に戻る</div>
+        <div className={styles.back} onClick={() => router.push("/search")}>
+          ◀︎検索条件に戻る
+        </div>
         <div className={styles.title}>検索結果</div>
         <div className={styles.contants}>
           <div className={styles.dateTabs}>
