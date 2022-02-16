@@ -29,7 +29,20 @@ const Schedule = ({ theaters }: ScheduleProps) => {
     });
   });
 
-  const clickSchedule = (theater: Theater, film: Film, schedule: ScheduleType) => {
+  const isAllReserved = (schedule: ScheduleType): boolean => {
+    let result: boolean[] = [];
+    schedule.seat.forEach((seat) => {
+      result.push(seat.column.some((column) => column.reserved == false));
+    });
+
+    return !result.some((result) => result == true);
+  };
+
+  const clickSchedule = (
+    theater: Theater,
+    film: Film,
+    schedule: ScheduleType
+  ) => {
     const reservation: Reservation = {
       theaterId: theater.id,
       theaterName: theater.name,
@@ -53,14 +66,25 @@ const Schedule = ({ theaters }: ScheduleProps) => {
             <div className={styles.film} key={film.id}>
               {film.name}
               {film.schedule.map((schedule) => (
-                <button
-                  className={styles.schedule}
-                  key={schedule.id}
-                  onClick={() => clickSchedule(theater, film, schedule)}
-                >
-                  {`${schedule.startTime}~${schedule.endTime}`}
-                  <div>予約購入</div>
-                </button>
+                isAllReserved(schedule) ? 
+                (
+                  <button
+                    className={styles.disabled}
+                    key={schedule.id}
+                  >
+                    {`${schedule.startTime}~${schedule.endTime}`}
+                    <div>満席</div>
+                  </button>
+                ) : (
+                  <button
+                    className={styles.schedule}
+                    key={schedule.id}
+                    onClick={() => clickSchedule(theater, film, schedule)}
+                  >
+                    {`${schedule.startTime}~${schedule.endTime}`}
+                    <div>予約購入</div>
+                  </button>
+                )
               ))}
             </div>
           ))}

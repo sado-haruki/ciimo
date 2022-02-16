@@ -25,3 +25,13 @@
 .schedule+.schedule{
     margin-left: 1rem;
 }
+
+.disabled {
+    color: white;
+    padding: 0.75rem 1.875rem;
+    border-radius: 0.25rem;
+    border: solid 0.0625rem transparent;
+    display: block;
+    background-color: $main-gray;
+    margin-top: 0.5rem;
+}
