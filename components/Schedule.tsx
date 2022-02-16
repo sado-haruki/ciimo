@@ -65,13 +65,9 @@ const Schedule = ({ theaters }: ScheduleProps) => {
           {theater.film.map((film) => (
             <div className={styles.film} key={film.id}>
               {film.name}
-              {film.schedule.map((schedule) => (
-                isAllReserved(schedule) ? 
-                (
-                  <button
-                    className={styles.disabled}
-                    key={schedule.id}
-                  >
+              {film.schedule.map((schedule) =>
+                isAllReserved(schedule) ? (
+                  <button className={styles.disabled} key={schedule.id}>
                     {`${schedule.startTime}~${schedule.endTime}`}
                     <div>満席</div>
                   </button>
@@ -85,7 +81,7 @@ const Schedule = ({ theaters }: ScheduleProps) => {
                     <div>予約購入</div>
                   </button>
                 )
-              ))}
+              )}
             </div>
           ))}
         </div>
