@@ -19,11 +19,10 @@ const Search = () => {
     .get("http://localhost:5000/zone", { timeout: 200 })
     .then((response) => {
       setData(response.data);
-      console.log(response.data);
     })
     .catch((e) => {
       axios
-        .get("https://my-json-server.typicode.com/sado-haruki/dbjson/zone")
+        .get("http://10.200.13.221:80/zone")
         .then((response) => {
           setData(response.data);
         });
@@ -33,11 +32,10 @@ const Search = () => {
     .get("http://localhost:5000/area", { timeout: 200 })
     .then((response) => {
       setAreaData(response.data)
-      console.log(response.data);
     })
     .catch((e) => {
       axios
-        .get("https://my-json-server.typicode.com/sado-haruki/dbjson/area")
+        .get("http://10.200.13.221:80/area")
         .then((response) => {
           setAreaData(response.data)
         });

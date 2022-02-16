@@ -41,33 +41,23 @@ const Index = () => {
             }
 
             if (res.zoneId !== 0) {
-              let isAllReserved = false;
+              let isZoneAllReserved: Boolean[] = [];
               schedule.seat.forEach((s) => {
-                console.log(res.zoneId);
-                // console.log(s.row)
-                // console.log(s.column.filter(c => c.zoneId === res.zoneId))
-
-                // isAllReserved = s.column.filter(c => c.zoneId === res.zoneId).every(c => !c.reserved)
-                const a = s.column.filter((c) => c.zoneId === res.zoneId);
-                console.log(a);
-                if (a.length !== 0) {
-                  if (a.every((c) => c.reserved)) {
-                    isAllReserved = true;
-                    console.log("全部予約されてまーーーーーす");
-                  }
+                const zoneSeat = s.column.filter(
+                  (c) => c.zoneId === res.zoneId
+                );
+                if (zoneSeat.length !== 0) {
+                  isZoneAllReserved.push(zoneSeat.every((c) => c.reserved))
                 }
               });
 
-              if (!isAllReserved) {
+              if (isZoneAllReserved.some((reserved) => !reserved)) {
                 scheduleArray.push(schedule);
               }
-
-              console.log(scheduleArray);
             }
-
-            // if (schedule.date === showDate) {
-            //   scheduleArray.push(schedule);
-            // }
+            else{
+              scheduleArray.push(schedule);
+            }
           });
           if (scheduleArray.length !== 0) {
             filmArray.push({
@@ -101,7 +91,7 @@ const Index = () => {
       })
       .catch((e) => {
         axios
-          .get("https://my-json-server.typicode.com/sado-haruki/dbjson/theater")
+          .get("http://10.200.13.221:80/theater")
           .then((response) => {
             data.current = response.data;
             setvalue(dateTab());
