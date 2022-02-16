@@ -15,12 +15,16 @@ const Index = () => {
   type SearchScedule = {
     zoneId: Number;
     areaId: Number;
-  };
+    frontFree: boolean,
+    sideFree: boolean,
+  }
 
   const dateTab = useCallback((): Theater[] => {
     const res: SearchScedule = {
       zoneId: Number(router.query.zoneId),
       areaId: Number(router.query.areaId),
+      frontFree: (router.query.frontFree === "true"),
+      sideFree: (router.query.sideFree === "true")
     };
 
     let theaterArray: Theater[] = [];
@@ -40,6 +44,41 @@ const Index = () => {
               return;
             }
 
+            let isFrontFree = true;
+            if (res.frontFree) {
+              isFrontFree = false;
+              schedule.seat.forEach((seatTemp) => {
+                const rowId = seatTemp.row.charCodeAt(0) - 'A'.charCodeAt(0)
+                seatTemp.column.map((columnTemp) => {
+                  if (!columnTemp.reserved && (res.zoneId === 0 || columnTemp.zoneId === res.zoneId)) {
+                    if (rowId === 0 || !schedule.seat[rowId - 1].column[Number(columnTemp.seatName) - 1].reserved) {
+                      isFrontFree = true;
+                      console.log(rowId)
+                      console.log(columnTemp)
+                    }
+                  }
+                })
+              })
+            }
+            
+            let isSideFree = true;
+            if (res.sideFree) {
+              isSideFree = false;
+              schedule.seat.forEach((seatTemp) => {
+                const rowId = seatTemp.row.charCodeAt(0) - 'A'.charCodeAt(0)
+                seatTemp.column.map((columnTemp) => {
+                  if (!columnTemp.reserved && (res.zoneId === 0 || columnTemp.zoneId === res.zoneId)) {
+                    if ((columnTemp.seatName === "1" || !schedule.seat[rowId].column[Number(columnTemp.seatName) - 2].reserved) && 
+                    (columnTemp.seatName === "6" || !schedule.seat[rowId].column[Number(columnTemp.seatName)].reserved)) {
+                      isSideFree = true;
+                      console.log(rowId)
+                      console.log(columnTemp)
+                    }
+                  }
+                })
+              })
+            }
+
             if (res.zoneId !== 0) {
               let isZoneAllReserved: Boolean[] = [];
               schedule.seat.forEach((s) => {
@@ -51,12 +90,19 @@ const Index = () => {
                 }
               });
 
-              if (isZoneAllReserved.some((reserved) => !reserved)) {
+              if (isZoneAllReserved.some((reserved) => !reserved) && isFrontFree && isSideFree) {
                 scheduleArray.push(schedule);
               }
             }
             else{
-              scheduleArray.push(schedule);
+              if(isFrontFree && isSideFree)scheduleArray.push(schedule);
+
+              let isAllReserved = false;
+              schedule.seat.forEach((s) => {
+                if (s.column.filter(c => c.zoneId === res.zoneId).every(c => c.reserved)) {
+                  isAllReserved = true;
+                }
+              })
             }
           });
           if (scheduleArray.length !== 0) {
@@ -78,13 +124,13 @@ const Index = () => {
       });
     }
     return theaterArray;
-  }, [router.query.areaId, router.query.zoneId, showDate]);
+  }, [router.query.areaId, router.query.frontFree, router.query.sideFree, router.query.zoneId, showDate]);
 
   useEffect(() => setvalue(dateTab()), [showDate, dateTab]);
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/theater", { timeout: 200 })
+      .get("http://localhost:5000/theater", { timeout: 2000 })
       .then((response) => {
         data.current = response.data;
         setvalue(dateTab());
