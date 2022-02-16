@@ -12,51 +12,34 @@ const Index = () => {
   const [showDate, setshowDate] = useState("2/7(月)");
   const router = useRouter();
 
-
   type SearchScedule = {
-    zoneId: Number
-  }
+    zoneId: Number;
+    areaId: Number;
+  };
 
-  const dateTab = useCallback(():Theater[] => {
-    const res:SearchScedule = {
-      zoneId : Number(router.query.zoneId)
-    }
+  const dateTab = useCallback((): Theater[] => {
+    const res: SearchScedule = {
+      zoneId: Number(router.query.zoneId),
+      areaId: Number(router.query.areaId),
+    };
 
     let theaterArray: Theater[] = [];
+    let areaArray: Theater[] = [];
     if (data.current) {
-      data.current.forEach((theater) => {
+      if(res.areaId == 0){
+        areaArray = data.current
+      } else {
+        areaArray = data.current.filter((t) => t.areaId === res.areaId)}
+
+      areaArray.forEach((theater) => {
         let filmArray: Film[] = [];
         theater.film.forEach((film) => {
           let scheduleArray: ScheduleType[] = [];
           film.schedule.forEach((schedule) => {
 
-            if(schedule.date !== showDate){
-              return;
-            }
-
-            if(res.zoneId !== 0){
-            let isAllReserved = false;
-            schedule.seat.forEach((s) =>{
-              console.log(s.row)
-              console.log(s.column.filter(c => c.zoneId === res.zoneId))
-              
-              // isAllReserved = s.column.filter(c => c.zoneId === res.zoneId).every(c => !c.reserved)
-              if(s.column.filter(c => c.zoneId === res.zoneId).every(c => c.reserved)){
-                isAllReserved = true;
-                console.log("a")
-              }
-            }) 
-
-            if (!isAllReserved) {
+            if (schedule.date === showDate) {
               scheduleArray.push(schedule);
             }
-
-            console.log(scheduleArray)
-          }
-            
-            // if (schedule.date === showDate) {
-            //   scheduleArray.push(schedule);
-            // }
           });
           if (scheduleArray.length !== 0) {
             filmArray.push({
@@ -70,18 +53,18 @@ const Index = () => {
           theaterArray.push({
             id: theater.id,
             name: theater.name,
+            areaId: theater.areaId,
             film: filmArray,
           });
         }
       });
     }
     return theaterArray;
-  },[showDate]);
+  }, [router.query.areaId, router.query.zoneId, showDate]);
 
-  useEffect(() => setvalue(dateTab()), [showDate,dateTab]);
+  useEffect(() => setvalue(dateTab()), [showDate, dateTab]);
 
   useEffect(() => {
-
     axios
       .get("http://localhost:5000/theater", { timeout: 200 })
       .then((response) => {
@@ -107,53 +90,63 @@ const Index = () => {
         <div className={styles.contants}>
           <div className={styles.dateTabs}>
             <button
-              className={showDate == "2/7(月)"?(styles.selected):(styles.dateTab)}
+              className={
+                showDate == "2/7(月)" ? styles.selected : styles.dateTab
+              }
               onClick={() => setshowDate("2/7(月)")}
             >
               2/7(月)
             </button>
             <button
-              className={showDate == "2/8(火)"?(styles.selected):(styles.dateTab)}
+              className={
+                showDate == "2/8(火)" ? styles.selected : styles.dateTab
+              }
               onClick={() => setshowDate("2/8(火)")}
             >
               2/8(火)
             </button>
             <button
-              className={showDate == "2/9(水)"?(styles.selected):(styles.dateTab)}
+              className={
+                showDate == "2/9(水)" ? styles.selected : styles.dateTab
+              }
               onClick={() => setshowDate("2/9(水)")}
             >
               2/9(水)
             </button>
             <button
-              className={showDate == "2/10(木)"?(styles.selected):(styles.dateTab)}
+              className={
+                showDate == "2/10(木)" ? styles.selected : styles.dateTab
+              }
               onClick={() => setshowDate("2/10(木)")}
             >
               2/10(木)
             </button>
             <button
-              className={showDate == "2/11(金)"?(styles.selected):(styles.dateTab)}
+              className={
+                showDate == "2/11(金)" ? styles.selected : styles.dateTab
+              }
               onClick={() => setshowDate("2/11(金)")}
             >
               2/11(金)
             </button>
             <button
-              className={showDate == "2/12(土)"?(styles.selected):(styles.dateTab)}
+              className={
+                showDate == "2/12(土)" ? styles.selected : styles.dateTab
+              }
               onClick={() => setshowDate("2/12(土)")}
             >
               2/12(土)
             </button>
             <button
-              className={showDate == "2/13(日)"?(styles.selected):(styles.dateTab)}
+              className={
+                showDate == "2/13(日)" ? styles.selected : styles.dateTab
+              }
               onClick={() => setshowDate("2/13(日)")}
             >
               2/13(日)
             </button>
           </div>
-          {value ? (
-            <Schedule theaters={value}></Schedule>
-          ) : (
-            <div> </div>
-          )}
+          {value ? <Schedule theaters={value}></Schedule> : <div> </div>}
         </div>
       </div>
     </>

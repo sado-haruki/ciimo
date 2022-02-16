@@ -1,6 +1,7 @@
 export type Theater = {
     id: number,
     name: string,
+    areaId: number,
     film: Film[],
 }
 
