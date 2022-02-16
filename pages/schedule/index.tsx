@@ -36,10 +36,38 @@ const Index = () => {
         theater.film.forEach((film) => {
           let scheduleArray: ScheduleType[] = [];
           film.schedule.forEach((schedule) => {
-
-            if (schedule.date === showDate) {
-              scheduleArray.push(schedule);
+            if (schedule.date !== showDate) {
+              return;
             }
+
+            if (res.zoneId !== 0) {
+              let isAllReserved = false;
+              schedule.seat.forEach((s) => {
+                console.log(res.zoneId);
+                // console.log(s.row)
+                // console.log(s.column.filter(c => c.zoneId === res.zoneId))
+
+                // isAllReserved = s.column.filter(c => c.zoneId === res.zoneId).every(c => !c.reserved)
+                const a = s.column.filter((c) => c.zoneId === res.zoneId);
+                console.log(a);
+                if (a.length !== 0) {
+                  if (a.every((c) => c.reserved)) {
+                    isAllReserved = true;
+                    console.log("全部予約されてまーーーーーす");
+                  }
+                }
+              });
+
+              if (!isAllReserved) {
+                scheduleArray.push(schedule);
+              }
+
+              console.log(scheduleArray);
+            }
+
+            // if (schedule.date === showDate) {
+            //   scheduleArray.push(schedule);
+            // }
           });
           if (scheduleArray.length !== 0) {
             filmArray.push({
@@ -85,7 +113,9 @@ const Index = () => {
     <>
       <Header />
       <div className={styles.main}>
-        <div className={styles.back} onClick={() => router.push("/search")}>◀︎検索条件に戻る</div>
+        <div className={styles.back} onClick={() => router.push("/search")}>
+          ◀︎検索条件に戻る
+        </div>
         <div className={styles.title}>検索結果</div>
         <div className={styles.contants}>
           <div className={styles.dateTabs}>
