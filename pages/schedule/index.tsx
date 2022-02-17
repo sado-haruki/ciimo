@@ -145,7 +145,7 @@ const Index = () => {
             setvalue(dateTab());
           });
       });
-  }, [, dateTab]);
+  }, []);
 
   return (
     <>
