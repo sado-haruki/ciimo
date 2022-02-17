@@ -130,7 +130,7 @@ const Index = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/theater", { timeout: 2000 })
+      .get("http://localhost:5000/theater", { timeout: 500 })
       .then((response) => {
         data.current = response.data;
         setvalue(dateTab());

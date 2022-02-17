@@ -7,8 +7,6 @@ import axios from "axios";
 import { Column, Film, ScheduleType, Seat, Theater } from "../../types/Theater";
 import Header from "../../components/Header";
 import Link from "next/link";
-import SeatButton from "../../components/SeatButton";
-import { resolve } from "node:path/win32";
 import Flow from "../../components/Flow";
 import TheaterForm from "../../components/TheaterForm";
 
@@ -66,14 +64,6 @@ const ReservationConfirm: NextPage = () => {
     return "";
   };
 
-  const isReserved = (theater: Theater): boolean | undefined => {
-    return theater.film
-      .find((f) => f.id === storage.filmId)
-      ?.schedule.find((s) => s.id === storage.scheduleId)
-      ?.seat.find((s) => s.row === seat.row)
-      ?.column.find((c) => c.seatName === seat.seatName)?.reserved;
-  };
-
   const setReserved = (theater: Theater): Theater => {
     theater.film
       .find((f) => f.id === storage.filmId)!
@@ -108,7 +98,8 @@ const ReservationConfirm: NextPage = () => {
         axios.put(`http://localhost:5000/theater/${storage.theaterId}`, {
           id: theater.id,
           name: theater.name,
-          film: theater.film,
+          areaId: theater.areaId,
+          film: theater.film
         });
         router.push({
           pathname: "../complete",
@@ -123,9 +114,17 @@ const ReservationConfirm: NextPage = () => {
             `http://10.200.13.221:80/theater/${storage.theaterId}`
           )
           .then((response) => {
-            const reserved = isReserved(response.data);
-            if (reserved) {
-              //TODO 座席選択可能モーダルを表示
+            const responseSchedule = response.data.film
+
+            .find((f: Film) => f.id === storage.filmId)
+            ?.schedule.find((s: ScheduleType) => s.id === storage.scheduleId);
+  
+          const reserved = responseSchedule?.seat
+            .find((s: Seat) => s.row === seat.row)
+            ?.column.find((c: Column) => c.seatName === seat.seatName)?.reserved;
+              if (reserved) {
+              seats.current = responseSchedule.seat;
+              setModal(true);
               return;
             }
             const theater = setReserved(response.data);
@@ -134,6 +133,7 @@ const ReservationConfirm: NextPage = () => {
               {
                 id: theater.id,
                 name: theater.name,
+                areaId: theater.areaId,
                 film: theater.film,
               }
             );
@@ -149,15 +149,6 @@ const ReservationConfirm: NextPage = () => {
 
   const toJson = (data: string | null) => {
     return data ? JSON.parse(data) : null;
-  };
-
-  const clickSeat = (seat: ReservationSeat) => {
-    const reservationSeatTemp: ReservationSeat = {
-      row: seat.row,
-      seatName: seat.seatName,
-    };
-
-    reservationSeat.current = reservationSeatTemp;
   };
 
   const confirm = (e: any) => {
