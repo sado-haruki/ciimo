@@ -137,7 +137,7 @@ const Index = () => {
       })
       .catch((e) => {
         axios
-          .get("http://10.200.13.221:80/theater")
+          .get("http://10.200.13.221:443/theater")
           .then((response) => {
             data.current = response.data;
             setvalue(dateTab());

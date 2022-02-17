@@ -38,7 +38,7 @@ const SeatSelect: NextPage = () => {
           ?.schedule.find((s) => s.id === reservation.scheduleId)?.seat || [];
       setReadFlg(true);
     }).catch((e) => {
-      axios.get("http://10.200.13.221:80/theater/").then((response) => {
+      axios.get("http://10.200.13.221:443/theater/").then((response) => {
         const theaters: Theater[] = response.data;
         seats.current =
           theaters

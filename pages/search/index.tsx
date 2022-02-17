@@ -22,7 +22,7 @@ const Search = () => {
     })
     .catch((e) => {
       axios
-        .get("http://10.200.13.221:80/zone")
+        .get("http://10.200.13.221:443/zone")
         .then((response) => {
           setData(response.data);
         });
@@ -35,7 +35,7 @@ const Search = () => {
     })
     .catch((e) => {
       axios
-        .get("http://10.200.13.221:80/area")
+        .get("http://10.200.13.221:443/area")
         .then((response) => {
           setAreaData(response.data)
         });
