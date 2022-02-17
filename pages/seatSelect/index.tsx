@@ -17,6 +17,7 @@ export const ReservationSeatContext = createContext<any>(null)
 
 const SeatSelect: NextPage = () => {
   const seats = useRef<Seat[]>([]);
+  const [showError, setShowError] = useState(false);
   const [selectSeat, setSelectSeat] = useState<ReservationSeat>()
   const [readFlg, setReadFlg] = useState(false);
 
@@ -60,7 +61,9 @@ const SeatSelect: NextPage = () => {
           columnTemp.seatName === selectSeat?.seatName
       )?.reserved;
 
-    if (reservedTemp) {
+    // 座席が選択されていない場合
+    if (reservedTemp === undefined) {
+      setShowError(true);
       e.preventDefault();
       return;
     }
@@ -91,6 +94,15 @@ const SeatSelect: NextPage = () => {
               )
             }
           </div>
+          {showError ? (
+            <span className={styles.errorSpace}>
+              <span className={styles.erorrIcon}>!</span>
+              <span className={styles.erorrText}>
+                座席を選択してください。
+              </span>
+
+            </span>
+          ) : (<></>)}
           <div className={styles.buttons}>
             <button className={styles.back} onClick={() => {
               history.back();

@@ -49,3 +49,26 @@
   background-color: $red;
   cursor: pointer;
 }
+
+.errorSpace {
+  position: absolute;
+  margin-top: 1.5rem;
+  left: 50%;
+}
+
+.erorrIcon {
+  display: inline-block;
+  vertical-align: text-top;
+  padding: 0.1rem 0.42rem;
+  font-size: 0.75rem;
+  margin: 0.075rem 0.5rem;
+  background-color: $red;
+  color: white;
+  border-radius: 50%;
+}
+
+.erorrText {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  color: $red;
+}
