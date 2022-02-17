@@ -52,8 +52,11 @@
 
 .errorSpace {
   position: absolute;
+  text-align: center;
+  left: 0;
+  right: 0;
+  margin: auto;
   margin-top: 1.5rem;
-  left: 50%;
 }
 
 .erorrIcon {
