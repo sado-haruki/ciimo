@@ -16,14 +16,10 @@
     padding: 0.75rem 1.875rem;
     border-radius: 0.25rem;
     border: solid 0.0625rem $main-gray;
-    display: block;
+    display: inline-block;
     background-color: white;
-    margin-top: 0.5rem;
+    margin: 0.5rem 0.656rem;
     cursor: pointer;
-}
-
-.schedule+.schedule{
-    margin-left: 1rem;
 }
 
 .disabled {

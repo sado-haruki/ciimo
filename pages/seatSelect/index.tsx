@@ -95,13 +95,13 @@ const SeatSelect: NextPage = () => {
             }
           </div>
           {showError ? (
-            <span className={styles.errorSpace}>
+            <div className={styles.errorSpace}>
               <span className={styles.erorrIcon}>!</span>
               <span className={styles.erorrText}>
                 座席を選択してください。
               </span>
 
-            </span>
+            </div>
           ) : (<></>)}
           <div className={styles.buttons}>
             <button className={styles.back} onClick={() => {
