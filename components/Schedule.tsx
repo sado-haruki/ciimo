@@ -7,27 +7,42 @@ interface ScheduleProps {
   theaters: Theater[];
 }
 
+let films: {
+  filmId: number;
+  filmName: string;
+  theaters: {id: number, name: string; schedule: ScheduleType[] }[];
+}[] = [];
+
 // TODO: mapの要素の順番を入れ替えるデータを作る
 const Schedule = ({ theaters }: ScheduleProps) => {
-  let films: {
-    filmName: string;
-    theaters: { name: string; schedule: {}[] }[];
-  }[] = [];
+
+  films = [];
   theaters.forEach((theater) => {
     theater.film.forEach((film) => {
-      //findに直す
-      //重複したら弾く、してなかったらpushする
+      // console.log(films);
+      // console.log(film);
+
       if (
-        !films.some((filmfilm) => {
-          filmfilm.filmName === film.name;
+        films.length === 0 || 
+        !films.some((f) => {
+          f.filmName === film.name;
+          console.log(f.filmName);
+          console.log(film.name);
+          console.log(f.filmName === film.name);
         })
       ) {
-        films.push({ filmName: film.name, theaters: [] });
-        // scheduleを入れる
+        films.push({ filmId: film.id,filmName: film.name, theaters: [] });
       }
-      // theater.nameをtheaterName配列にpushする
+
+     films.forEach((f) => {if(f.filmName === film.name){
+       f.theaters.push({id: theater.id,name: theater.name , schedule: film.schedule})
+
+     }})
     });
   });
+  // console.log("films");
+  // console.log(films);
+
 
   const isAllReserved = (schedule: ScheduleType): boolean => {
     let result: boolean[] = [];
@@ -39,15 +54,19 @@ const Schedule = ({ theaters }: ScheduleProps) => {
   };
 
   const clickSchedule = (
-    theater: Theater,
-    film: Film,
+    theater: {id:number, name: string; schedule: ScheduleType[]},
+    film: {
+      filmId: number,
+      filmName: string;
+      theaters: { name: string; schedule: ScheduleType[] }[];
+    },
     schedule: ScheduleType
   ) => {
     const reservation: Reservation = {
       theaterId: theater.id,
       theaterName: theater.name,
-      filmId: film.id,
-      filmName: film.name,
+      filmId: film.filmId,
+      filmName: film.filmName,
       scheduleId: schedule.id,
       schedule:
         schedule.date + " " + schedule.startTime + "~" + schedule.endTime,
@@ -59,13 +78,13 @@ const Schedule = ({ theaters }: ScheduleProps) => {
 
   return (
     <>
-      {theaters.map((theater) => (
-        <div className={styles.theater} key={theater.id}>
-          {theater.name}
-          {theater.film.map((film) => (
-            <div className={styles.film} key={film.id}>
-              {film.name}
-              {film.schedule.map((schedule) =>
+      {films.map((film) => (
+        <div className={styles.theater} key={film.filmName}>
+          {film.filmName}
+          {film.theaters.map((theater) => (
+            <div className={styles.film} key={theater.name}>
+              {theater.name}
+              {theater.schedule.map((schedule) =>
                 isAllReserved(schedule) ? (
                   <button className={styles.disabled} key={schedule.id}>
                     {`${schedule.startTime}~${schedule.endTime}`}

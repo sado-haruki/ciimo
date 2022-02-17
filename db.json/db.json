@@ -8,11 +8,11 @@
         {
           "id": 1,
           "name": "呪術廻戦0",
-          "theaterId": 3,
+          "theaterId": 1,
           "schedule": [
             {
               "id": 1,
-              "date": "2/7(月)",
+              "date": "2/8(火)",
               "startTime": "10:00",
               "endTime": "11:30",
               "seat": [
@@ -229,7 +229,233 @@
               ]
             }
           ]
+        },
+        {
+          "id": 2,
+          "name": "スパイダーマン",
+          "theaterId": 2,
+          "schedule": [
+            {
+              "id": 1,
+              "date": "2/8(火)",
+              "startTime": "10:00",
+              "endTime": "11:30",
+              "seat": [
+                {
+                  "row": "A",
+                  "column": [
+                    {
+                      "seatName": "1",
+                      "reserved": false,
+                      "zoneId": 1
+                    },
+                    {
+                      "seatName": "2",
+                      "reserved": false,
+                      "zoneId": 1
+                    },
+                    {
+                      "seatName": "3",
+                      "reserved": false,
+                      "zoneId": 2
+                    },
+                    {
+                      "seatName": "4",
+                      "reserved": false,
+                      "zoneId": 2
+                    },
+                    {
+                      "seatName": "5",
+                      "reserved": false,
+                      "zoneId": 3
+                    },
+                    {
+                      "seatName": "6",
+                      "reserved": false,
+                      "zoneId": 3
+                    }
+                  ]
+                },
+                {
+                  "row": "B",
+                  "column": [
+                    {
+                      "seatName": "1",
+                      "reserved": false,
+                      "zoneId": 1
+                    },
+                    {
+                      "seatName": "2",
+                      "reserved": false,
+                      "zoneId": 1
+                    },
+                    {
+                      "seatName": "3",
+                      "reserved": false,
+                      "zoneId": 2
+                    },
+                    {
+                      "seatName": "4",
+                      "reserved": false,
+                      "zoneId": 2
+                    },
+                    {
+                      "seatName": "5",
+                      "reserved": false,
+                      "zoneId": 3
+                    },
+                    {
+                      "seatName": "6",
+                      "reserved": false,
+                      "zoneId": 3
+                    }
+                  ]
+                },
+                {
+                  "row": "C",
+                  "column": [
+                    {
+                      "seatName": "1",
+                      "reserved": false,
+                      "zoneId": 4
+                    },
+                    {
+                      "seatName": "2",
+                      "reserved": false,
+                      "zoneId": 4
+                    },
+                    {
+                      "seatName": "3",
+                      "reserved": true,
+                      "zoneId": 5
+                    },
+                    {
+                      "seatName": "4",
+                      "reserved": false,
+                      "zoneId": 5
+                    },
+                    {
+                      "seatName": "5",
+                      "reserved": false,
+                      "zoneId": 6
+                    },
+                    {
+                      "seatName": "6",
+                      "reserved": false,
+                      "zoneId": 6
+                    }
+                  ]
+                },
+                {
+                  "row": "D",
+                  "column": [
+                    {
+                      "seatName": "1",
+                      "reserved": false,
+                      "zoneId": 4
+                    },
+                    {
+                      "seatName": "2",
+                      "reserved": false,
+                      "zoneId": 4
+                    },
+                    {
+                      "seatName": "3",
+                      "reserved": true,
+                      "zoneId": 5
+                    },
+                    {
+                      "seatName": "4",
+                      "reserved": false,
+                      "zoneId": 5
+                    },
+                    {
+                      "seatName": "5",
+                      "reserved": false,
+                      "zoneId": 6
+                    },
+                    {
+                      "seatName": "6",
+                      "reserved": false,
+                      "zoneId": 6
+                    }
+                  ]
+                },
+                {
+                  "row": "E",
+                  "column": [
+                    {
+                      "seatName": "1",
+                      "reserved": false,
+                      "zoneId": 7
+                    },
+                    {
+                      "seatName": "2",
+                      "reserved": false,
+                      "zoneId": 7
+                    },
+                    {
+                      "seatName": "3",
+                      "reserved": false,
+                      "zoneId": 8
+                    },
+                    {
+                      "seatName": "4",
+                      "reserved": false,
+                      "zoneId": 8
+                    },
+                    {
+                      "seatName": "5",
+                      "reserved": false,
+                      "zoneId": 9
+                    },
+                    {
+                      "seatName": "6",
+                      "reserved": true,
+                      "zoneId": 9
+                    }
+                  ]
+                },
+                {
+                  "row": "F",
+                  "column": [
+                    {
+                      "seatName": "1",
+                      "reserved": false,
+                      "zoneId": 7
+                    },
+                    {
+                      "seatName": "2",
+                      "reserved": false,
+                      "zoneId": 7
+                    },
+                    {
+                      "seatName": "3",
+                      "reserved": false,
+                      "zoneId": 8
+                    },
+                    {
+                      "seatName": "4",
+                      "reserved": false,
+                      "zoneId": 8
+                    },
+                    {
+                      "seatName": "5",
+                      "reserved": false,
+                      "zoneId": 9
+                    },
+                    {
+                      "seatName": "6",
+                      "reserved": true,
+                      "zoneId": 9
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         }
+
       ]
     },
     {
@@ -238,7 +464,7 @@
       "areaId": 2,
       "film": [
         {
-          "id": 2,
+          "id": 3,
           "name": "スパイダーマン",
           "theaterId": 2,
           "schedule": [
@@ -470,7 +696,7 @@
       "areaId": 1,
       "film": [
         {
-          "id": 3,
+          "id": 4,
           "name": "ゴーストバスターズ",
           "theaterId": 3,
           "schedule": [
