@@ -92,11 +92,13 @@ const SeatSelect: NextPage = () => {
               }          
             </div>
           <div className={styles.buttons}>
-            <Link href={"/schedule"}>
-              <a>
-                <button className={styles.back}>検索結果に戻る</button>
-              </a>
-            </Link>
+            {/* <Link href={"/schedule"}>
+              <a > */}
+                <button className={styles.back} onClick={() => {
+                  history.back();
+                }}>検索結果に戻る</button>
+              {/* </a>
+            </Link> */}
 
             <Link href={"/confirm"}>
               <a onClick={clickConfirm}>
