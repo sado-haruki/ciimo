@@ -9,10 +9,12 @@ import { Zone } from "../../types/Zone";
 const Search = () => {
   const[data,setData] = useState<Zone[]>([]);
   const [areaData,setAreaData] = useState<Area[]>([]);
+  const filmName = useRef<string>("");
   const isFrontFree = useRef<boolean>(false);
   const isSideFree = useRef<boolean>(false);
   const ZoneId = useRef<number>(0);
   const AreaId = useRef<number>(0);
+  
 
   useEffect (() => {
   axios
@@ -43,10 +45,10 @@ const Search = () => {
   },[]);
 
   const search = () => {
-
     Router.push({
       pathname: "/schedule",
       query: {
+        filmName: filmName.current,
         zoneId: ZoneId.current,
         frontFree: isFrontFree.current,
         sideFree: isSideFree.current,
@@ -71,6 +73,9 @@ const Search = () => {
         <div className={styles.contants}>
           <form className={styles.items}>
             <div>
+              <label className={styles.label}>作品名</label>
+                <input className={styles.inputText} placeholder="作品名" onChange={(e) => filmName.current = e.target.value}></input>
+              <div/>
               <label className={styles.label}>希望の座席</label>
               <select className={styles.dropDown} onChange={(e) => selectZone(e)}>
                 <option value="0">

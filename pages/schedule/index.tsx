@@ -13,6 +13,7 @@ const Index = () => {
   const router = useRouter();
 
   type SearchScedule = {
+    filmName: string;
     zoneId: Number;
     areaId: Number;
     frontFree: boolean,
@@ -21,6 +22,7 @@ const Index = () => {
 
   const dateTab = useCallback((): Theater[] => {
     const res: SearchScedule = {
+      filmName: typeof(router.query.filmName) === "string" ? router.query.filmName : "",
       zoneId: Number(router.query.zoneId),
       areaId: Number(router.query.areaId),
       frontFree: (router.query.frontFree === "true"),
@@ -39,6 +41,10 @@ const Index = () => {
         let filmArray: Film[] = [];
         theater.film.forEach((film) => {
           let scheduleArray: ScheduleType[] = [];
+          if(!!res.filmName && film.name.indexOf(res.filmName) === -1) {
+            return;
+          }
+
           film.schedule.forEach((schedule) => {
             if (schedule.date !== showDate) {
               return;
