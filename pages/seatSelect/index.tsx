@@ -28,7 +28,7 @@ const SeatSelect: NextPage = () => {
     const reservation = toJson(
       localStorage.getItem("reservation")
     ) as Reservation;
-    axios.get("http://localhost:5000/theater/", {timeout:500}).then((response) => {
+    axios.get("http://localhost:5000/theater/", { timeout: 500 }).then((response) => {
       const theaters: Theater[] = response.data;
       seats.current =
         theaters
@@ -45,60 +45,56 @@ const SeatSelect: NextPage = () => {
             ?.film.find((f) => f.id === reservation.filmId)
             ?.schedule.find((s) => s.id === reservation.scheduleId)?.seat || [];
         setReadFlg(true);
-    });
-  })
-};
+      });
+    })
+  };
 
   const clickConfirm = (e: any) => {
     e.stopPropagation();
     theaterGetJson();
 
     const reservedTemp = seats.current
-        .find((seat) => seat.row === selectSeat?.row)
-        ?.column.find(
-            (columnTemp) =>
-                columnTemp.seatName === selectSeat?.seatName
-        )?.reserved;
+      .find((seat) => seat.row === selectSeat?.row)
+      ?.column.find(
+        (columnTemp) =>
+          columnTemp.seatName === selectSeat?.seatName
+      )?.reserved;
 
     if (reservedTemp) {
-        e.preventDefault();
-        return;
+      e.preventDefault();
+      return;
     }
 
     localStorage.setItem(
-        "reservationSeat",
-        JSON.stringify(selectSeat)
+      "reservationSeat",
+      JSON.stringify(selectSeat)
     );
-};
+  };
 
   return (
     <>
       <Header />
       <div className={styles.main}>
-      <Flow select={1}/>
+        <Flow select={1} />
         <div className={styles.contants}>
           <div className={styles.selectField}>
-              {
-                // シート情報が取得できた場合
-                readFlg ? (
-                  <TheaterForm
-                    seats={seats.current}
-                    setSelectSeat={setSelectSeat || {}}
-                  />
-                ) : (
-                  // シート情報が取得できていない場合
-                  <>読み込み中</>
-                )
-              }          
-            </div>
+            {
+              // シート情報が取得できた場合
+              readFlg ? (
+                <TheaterForm
+                  seats={seats.current}
+                  setSelectSeat={setSelectSeat || {}}
+                />
+              ) : (
+                // シート情報が取得できていない場合
+                <>読み込み中</>
+              )
+            }
+          </div>
           <div className={styles.buttons}>
-            {/* <Link href={"/schedule"}>
-              <a > */}
-                <button className={styles.back} onClick={() => {
-                  history.back();
-                }}>検索結果に戻る</button>
-              {/* </a>
-            </Link> */}
+            <button className={styles.back} onClick={() => {
+              history.back();
+            }}>検索結果に戻る</button>
 
             <Link href={"/confirm"}>
               <a onClick={clickConfirm}>
