@@ -19,17 +19,12 @@ const Schedule = ({ theaters }: ScheduleProps) => {
   films = [];
   theaters.forEach((theater) => {
     theater.film.forEach((film) => {
-      // console.log(films);
-      // console.log(film);
 
       if (
         films.length === 0 || 
-        !films.some((f) => {
-          f.filmName === film.name;
-          console.log(f.filmName);
-          console.log(film.name);
-          console.log(f.filmName === film.name);
-        })
+        !films.some((f) => 
+          f.filmName === film.name
+        )
       ) {
         films.push({ filmId: film.id,filmName: film.name, theaters: [] });
       }
@@ -40,9 +35,6 @@ const Schedule = ({ theaters }: ScheduleProps) => {
      }})
     });
   });
-  // console.log("films");
-  // console.log(films);
-
 
   const isAllReserved = (schedule: ScheduleType): boolean => {
     let result: boolean[] = [];
