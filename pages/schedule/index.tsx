@@ -53,8 +53,6 @@ const Index = () => {
                   if (!columnTemp.reserved && (res.zoneId === 0 || columnTemp.zoneId === res.zoneId)) {
                     if (rowId === 0 || !schedule.seat[rowId - 1].column[Number(columnTemp.seatName) - 1].reserved) {
                       isFrontFree = true;
-                      console.log(rowId)
-                      console.log(columnTemp)
                     }
                   }
                 })
@@ -71,8 +69,6 @@ const Index = () => {
                     if ((columnTemp.seatName === "1" || !schedule.seat[rowId].column[Number(columnTemp.seatName) - 2].reserved) && 
                     (columnTemp.seatName === "6" || !schedule.seat[rowId].column[Number(columnTemp.seatName)].reserved)) {
                       isSideFree = true;
-                      console.log(rowId)
-                      console.log(columnTemp)
                     }
                   }
                 })
@@ -137,7 +133,7 @@ const Index = () => {
       })
       .catch((e) => {
         axios
-          .get("http://10.200.13.221:443/theater")
+          .get("https://my-json-server.typicode.com/sado-haruki/dbjson/theater")
           .then((response) => {
             data.current = response.data;
             setvalue(dateTab());
@@ -149,7 +145,9 @@ const Index = () => {
     <>
       <Header />
       <div className={styles.main}>
-        <div className={styles.back} onClick={() => router.push("/search")}>
+        <div className={styles.back} onClick={() => {
+              history.back();
+            }}>
           ◀︎検索条件に戻る
         </div>
         <div className={styles.title}>検索結果</div>

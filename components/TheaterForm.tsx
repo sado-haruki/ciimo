@@ -21,7 +21,6 @@ const TheaterForm = ({
     }
 
     useEffect(() => {
-        console.log(reservationSeat);
     }, [redrawFlg])
 
     const clickSeat = (seat: ReservationSeat) => {

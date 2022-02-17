@@ -35,7 +35,7 @@ const ReservationConfirm: NextPage = () => {
           ?.schedule.find((s) => s.id === reservation.scheduleId)?.seat || [];
       setReadFlg(true);
     }).catch((e) => {
-      axios.get("http://10.200.13.221:443/theater/").then((res) => {
+      axios.get("https://my-json-server.typicode.com/sado-haruki/dbjson/theater/").then((res) => {
         const theaters: Theater[] = res.data;
         seats.current =
           theaters
@@ -111,7 +111,7 @@ const ReservationConfirm: NextPage = () => {
       .catch((e) => {
         axios
           .get(
-            `http://10.200.13.221:443/theater/${storage.theaterId}`
+            `https://my-json-server.typicode.com/sado-haruki/dbjson/theater/${storage.theaterId}`
           )
           .then((response) => {
             const responseSchedule = response.data.film
@@ -129,7 +129,7 @@ const ReservationConfirm: NextPage = () => {
             }
             const theater = setReserved(response.data);
             axios.put(
-              `http://10.200.13.221:443/theater/${storage.theaterId}`,
+              `https://my-json-server.typicode.com/sado-haruki/dbjson/theater/${storage.theaterId}`,
               {
                 id: theater.id,
                 name: theater.name,
@@ -219,7 +219,9 @@ const ReservationConfirm: NextPage = () => {
           </div>
           <div className={styles.buttons}>
             <button
-              onClick={() => router.push("../seatSelect")}
+              onClick={() => {
+                history.back();
+              }}
               className={styles.back}
             >
               戻る

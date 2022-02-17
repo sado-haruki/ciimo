@@ -38,10 +38,8 @@ const SeatButton = ({
       key={key}
       onClick={() => {
         const seatTemp: ReservationSeat = clickSeat(seat);
-        // console.log(reservationSeat);
         setRedrawFlg(!redrawFlg);
         reservationSeat = seat;
-        console.log(reservationSeat);
       }}
       className={`${selectedFlg ? styles.selected : styles.notSelected} 
                 ${reserved ? styles.disabled : styles.abled}`}

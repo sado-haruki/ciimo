@@ -22,7 +22,7 @@ const Search = () => {
     })
     .catch((e) => {
       axios
-        .get("http://10.200.13.221:443/zone")
+        .get("https://my-json-server.typicode.com/sado-haruki/dbjson/zone")
         .then((response) => {
           setData(response.data);
         });
@@ -35,7 +35,7 @@ const Search = () => {
     })
     .catch((e) => {
       axios
-        .get("http://10.200.13.221:443/area")
+        .get("https://my-json-server.typicode.com/sado-haruki/dbjson/area")
         .then((response) => {
           setAreaData(response.data)
         });
