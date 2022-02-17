@@ -73,9 +73,11 @@ const Schedule = ({ theaters }: ScheduleProps) => {
       {films.map((film) => (
         <div className={styles.theater} key={film.filmName}>
           {film.filmName}
+          <div></div>
           {film.theaters.map((theater) => (
             <div className={styles.film} key={theater.name}>
               {theater.name}
+              <div></div>
               {theater.schedule.map((schedule) =>
                 isAllReserved(schedule) ? (
                   <button className={styles.disabled} key={schedule.id}>
