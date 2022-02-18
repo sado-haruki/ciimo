@@ -47,7 +47,7 @@ const SeatButton = ({
       }}
       className={`${selectedFlg ? styles.selected : styles.notSelected} 
                 ${reserved ? styles.disabled : styles.abled} 
-                ${inZoneId ? styles.inZone: styles.none}`}
+                ${inZoneId && !reserved ? styles.inZone: styles.none}`}
     >
       <span className={styles.number}>{seat.seatName}</span>
     </button>

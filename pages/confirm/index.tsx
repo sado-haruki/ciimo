@@ -256,18 +256,14 @@ const ReservationConfirm: NextPage = () => {
                     }
                   </div>
                   <div className={styles.buttons}>
-                    <Link href={"/seatSelect"}>
-                      <a>
+                    <Link passHref href={"/seatSelect"}>
                         <button className={styles.back}>
                           座席選択画面に戻る
                         </button>
-                      </a>
                     </Link>
 
-                    <Link href={"/confirm"}>
-                      <a onClick={confirm}>
-                        <button className={styles.confirm}>決定する</button>
-                      </a>
+                    <Link passHref href={"/confirm"}>
+                        <button onClick={confirm} className={styles.confirm} disabled={selectSeat ? false : true}>決定する</button>
                     </Link>
                   </div>
                 </div>

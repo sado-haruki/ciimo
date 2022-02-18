@@ -108,10 +108,8 @@ const SeatSelect: NextPage = () => {
               history.back();
             }}>検索結果に戻る</button>
 
-            <Link href={"/confirm"}>
-              <a onClick={clickConfirm}>
-                <button className={styles.confirm}>決定する</button>
-              </a>
+            <Link passHref href={"/confirm"}>
+                <button onClick={clickConfirm} className={styles.confirm}>決定する</button>
             </Link>
           </div>
         </div>

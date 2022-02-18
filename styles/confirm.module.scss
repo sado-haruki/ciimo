@@ -172,3 +172,9 @@
   background-color: $red;
   cursor: pointer;
 }
+
+.confirm:disabled {
+  border: solid 0.0625rem $main-gray;
+  background-color: $main-gray;
+  cursor: default;
+}
