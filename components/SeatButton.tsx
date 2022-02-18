@@ -16,6 +16,7 @@ interface seatButtonProps {
   redrawFlg: boolean;
   setRedrawFlg: React.Dispatch<React.SetStateAction<boolean>>;
   reservationSeat: ReservationSeat;
+  inZoneId: boolean;
 }
 
 const SeatButton = ({
@@ -25,12 +26,15 @@ const SeatButton = ({
   seat,
   redrawFlg,
   setRedrawFlg,
-  reservationSeat
+  reservationSeat,
+  inZoneId
 }: seatButtonProps) => {
   const [selectedFlg, setSelectedFlg] = useState(reserved);
 
   useEffect(() => {
     setSelectedFlg(JSON.stringify(reservationSeat) === JSON.stringify(seat));
+    // console.log(seat)
+    // console.log(inZoneId)
   }, [redrawFlg])
 
   return (
@@ -42,7 +46,8 @@ const SeatButton = ({
         reservationSeat = seat;
       }}
       className={`${selectedFlg ? styles.selected : styles.notSelected} 
-                ${reserved ? styles.disabled : styles.abled}`}
+                ${reserved ? styles.disabled : styles.abled} 
+                ${inZoneId ? styles.inZone: styles.none}`}
     >
       <span className={styles.number}>{seat.seatName}</span>
     </button>

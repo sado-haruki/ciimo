@@ -14,14 +14,12 @@ const TheaterForm = ({
     setSelectSeat
 }: TheaterProps) => {
     const [redrawFlg, setRedrawFlg] = useState(false);
-    const reservationSeat = useRef<ReservationSeat>()
-
-    const theaterRedraw = () => {
-        setRedrawFlg(!redrawFlg);
-    }
+    const reservationSeat = useRef<ReservationSeat>();
+    const zoneId = useRef<number>(Number(localStorage.getItem("zoneId")));
 
     useEffect(() => {
-    }, [redrawFlg])
+        console.log(zoneId)
+    }, [])
 
     const clickSeat = (seat: ReservationSeat) => {
         const reservationSeatTemp: ReservationSeat = {
@@ -51,6 +49,7 @@ const TheaterForm = ({
                                     redrawFlg={redrawFlg}
                                     setRedrawFlg={setRedrawFlg}
                                     reservationSeat={reservationSeat.current || {}}
+                                    inZoneId={zoneId.current === columTemp.zoneId}
                                 />
                             ))
                         }

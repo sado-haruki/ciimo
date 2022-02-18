@@ -22,6 +22,7 @@ export type ScheduleType = {
 export type Seat = {
     row: string,
     column: Column[],
+    zoneId?: number,
 }
 
 export type Column = {

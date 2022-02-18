@@ -45,6 +45,7 @@ const Search = () => {
   },[]);
 
   const search = () => {
+    localStorage.setItem("zoneId", ZoneId.current.toString());
     Router.push({
       pathname: "/schedule",
       query: {
